@@ -1,10 +1,11 @@
 package screens.presets_screen.linguistic_terms_for_evaluating_the_importance_of_criteria
 
+import GLOBAl_CRITERIA_LT
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.*
 import models.LinguisticTermCell
 import screens.elements.TableCell
-import screens.presets_screen.GLOBAl_CRITERIA_LT
+
 import screens.presets_screen.updateDataInList
 
 

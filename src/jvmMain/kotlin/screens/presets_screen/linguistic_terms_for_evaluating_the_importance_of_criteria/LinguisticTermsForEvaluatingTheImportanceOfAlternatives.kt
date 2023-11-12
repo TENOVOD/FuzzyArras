@@ -1,8 +1,8 @@
 package screens.presets_screen.linguistic_terms_for_evaluating_the_importance_of_criteria
 
+import GLOBAl_ALTERNATIVE_LT
 import androidx.compose.runtime.*
 import models.LinguisticTermCell
-import screens.presets_screen.GLOBAl_ALTERNATIVE_LT
 import screens.presets_screen.updateDataInList
 
 @Composable

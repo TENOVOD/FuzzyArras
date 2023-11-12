@@ -1,5 +1,10 @@
 package screens.presets_screen
 
+import GLOBAL_COUNT_ALTERNATIVE
+import GLOBAL_COUNT_CRITERIA
+import GLOBAL_COUNT_EXPERT
+import GLOBAl_ALTERNATIVE_LT
+import GLOBAl_CRITERIA_LT
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -7,7 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import data.*
+import models.Criteria
 import models.LinguisticTermCell
+import navcontroller.NavController
 import screens.elements.*
 import screens.presets_screen.alternative_count.AlternativeCountView
 
@@ -19,25 +26,30 @@ import screens.presets_screen.linguistic_terms_for_evaluating_the_importance_of_
 
 import screens.presets_screen.parts.сount_LT.CountLT
 
-var GLOBAl_CRITERIA_LT = mutableListOf<LinguisticTermCell>()
-var GLOBAl_ALTERNATIVE_LT = mutableListOf<LinguisticTermCell>()
+
+
+
 
 @Composable
 fun PresentScreenView(
-    
+    navController: NavController
 ) {
+    println("START ACTIVITY + ${GLOBAl_CRITERIA_LT}")
     var rememberCriteriaEvaluation by remember { mutableStateOf(3) }
     var rememberAlternativeEvaluation by remember { mutableStateOf(3) }
     val criteriaDataPoints = remember{ mutableStateListOf(listOf(0f,0f,0f))}
     val alternativeDataPoints = remember{ mutableStateListOf(listOf(0f,0f,0f))}
-    var rememberCriteriaDataMatrix by remember { mutableStateOf(setFor3LinguisticTerm) }
+    var rememberCriteriaDataMatrix by remember { mutableStateOf(GLOBAl_CRITERIA_LT) }
     var rememberAlternativeDataMatrix by remember { mutableStateOf(setFor3LinguisticTerm) }
 
 
     println("Rememem")
 
-
-    Row {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 100.dp)
+    ) {
         Column(modifier = Modifier.width(700.dp)) {
 
             Column(
@@ -288,7 +300,6 @@ fun PresentScreenView(
                 onAddCounterCriteriaValue = {
                     if (rememberCriteriaEvaluation < 7) {
                         rememberCriteriaEvaluation++
-                        println("$rememberCriteriaEvaluation")
                     }
                 },
                 onRemoveCounterCriteriaValue = {
@@ -315,15 +326,17 @@ fun PresentScreenView(
                 onAddCounterCriteriaValue = {
                     if (rememberCriteriaCount < 10) {
                         rememberCriteriaCount++
+                        GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
                     }
                 },
                 onRemoveCounterCriteriaValue = {
                     if (rememberCriteriaCount > 2) {
                         rememberCriteriaCount--
+                        GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
                     }
                 },
                 onCriteriaButtonAction = {
-                    //////ADDDD
+                    navController.navigate(Screen.SettingsScreen.name)
                 }
             )
 
@@ -334,11 +347,13 @@ fun PresentScreenView(
                 onAddCounterAlternativeValue = {
                     if (rememberAlternativeCount < 10) {
                         rememberAlternativeCount++
+                        GLOBAL_COUNT_ALTERNATIVE=rememberAlternativeCount
                     }
                 },
                 onRemoveCounterAlternativeValue = {
                     if (rememberAlternativeCount > 2) {
                         rememberAlternativeCount--
+                        GLOBAL_COUNT_ALTERNATIVE=rememberAlternativeCount
                     }
                 },
                 onAlternativeButtonAction = {
@@ -353,11 +368,13 @@ fun PresentScreenView(
                 onAddCounterExpertValue = {
                     if (rememberExpertsCount < 10) {
                         rememberExpertsCount++
+                        GLOBAL_COUNT_EXPERT=rememberExpertsCount
                     }
                 },
                 onRemoveCounterExpertValue = {
                     if (rememberExpertsCount > 1) {
                         rememberExpertsCount--
+                        GLOBAL_COUNT_EXPERT=rememberExpertsCount
                     }
                 },
                 onExpertsButton = {
