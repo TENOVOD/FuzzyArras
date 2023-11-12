@@ -2,6 +2,8 @@ package screens.presets_screen
 
 import GLOBAL_COUNT_ALTERNATIVE
 import GLOBAL_COUNT_CRITERIA
+import GLOBAL_COUNT_EV_ALTERNATIVE
+import GLOBAL_COUNT_EV_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
@@ -35,8 +37,8 @@ fun PresentScreenView(
     navController: NavController
 ) {
     println("START ACTIVITY + ${GLOBAl_CRITERIA_LT}")
-    var rememberCriteriaEvaluation by remember { mutableStateOf(3) }
-    var rememberAlternativeEvaluation by remember { mutableStateOf(3) }
+    var rememberCriteriaEvaluation by remember { mutableStateOf(GLOBAL_COUNT_EV_CRITERIA) }
+    var rememberAlternativeEvaluation by remember { mutableStateOf(GLOBAL_COUNT_EV_ALTERNATIVE) }
     val criteriaDataPoints = remember{ mutableStateListOf(listOf(0f,0f,0f))}
     val alternativeDataPoints = remember{ mutableStateListOf(listOf(0f,0f,0f))}
     var rememberCriteriaDataMatrix by remember { mutableStateOf(GLOBAl_CRITERIA_LT) }
@@ -59,7 +61,6 @@ fun PresentScreenView(
             ) {
                 Text("Linguistic terms for evaluating the importance of criteria")
                 Spacer(modifier = Modifier.height(10.dp))
-                println("start column $rememberCriteriaDataMatrix")
                 Row {
                     HeaderCell("Full name")
                     HeaderCell("Short name")
@@ -69,42 +70,24 @@ fun PresentScreenView(
                 }
                 when (rememberCriteriaEvaluation) {
                     3 -> {
-                        rememberCriteriaDataMatrix = setFor3LinguisticTerm
-                        println("$rememberCriteriaEvaluation in when")
-                        GLOBAl_CRITERIA_LT = rememberCriteriaDataMatrix
-                        updateDataMatrix(rememberCriteriaDataMatrix)
+                        updateDataMatrix(GLOBAl_CRITERIA_LT)
                     }
-
                     4 -> {
-                        rememberCriteriaDataMatrix = setFor4LinguisticTerm
-                        println("$rememberCriteriaEvaluation in when")
-                        GLOBAl_CRITERIA_LT = rememberCriteriaDataMatrix
-                        updateDataMatrix(rememberCriteriaDataMatrix)
+                        updateDataMatrix(GLOBAl_CRITERIA_LT)
                     }
-
                     5 -> {
-                        rememberCriteriaDataMatrix = setFor5LinguisticTerm
-                        println("$rememberCriteriaEvaluation in when")
-                        GLOBAl_CRITERIA_LT = rememberCriteriaDataMatrix
-                        updateDataMatrix(rememberCriteriaDataMatrix)
+                        updateDataMatrix(GLOBAl_CRITERIA_LT)
                     }
-
                     6 -> {
-                        rememberCriteriaDataMatrix = setFor6LinguisticTerm
-                        println("$rememberCriteriaEvaluation in when")
-                        GLOBAl_CRITERIA_LT = rememberCriteriaDataMatrix
-                        updateDataMatrix(rememberCriteriaDataMatrix)
+                        updateDataMatrix(GLOBAl_CRITERIA_LT)
                     }
 
                     7 -> {
-                        rememberCriteriaDataMatrix = setFor7LinguisticTerm
-                        println("$rememberCriteriaEvaluation in when")
-                        GLOBAl_CRITERIA_LT = rememberCriteriaDataMatrix
-                        updateDataMatrix(rememberCriteriaDataMatrix)
+                        updateDataMatrix(GLOBAl_CRITERIA_LT)
                     }
-
-
                 }
+
+
                 var preparationForDataPoint by remember { mutableStateOf(GLOBAl_CRITERIA_LT) }
 
                 criteriaDataPoints.clear()
@@ -194,50 +177,32 @@ fun PresentScreenView(
                     HeaderCell("")
                     HeaderCell("")
                 }
+                println("NEEWEWEWEW")
                 when (rememberAlternativeEvaluation) {
                     3 -> {
-                        rememberAlternativeDataMatrix = setFor3LinguisticTerm
-                        println("$rememberAlternativeEvaluation in when")
-                        GLOBAl_ALTERNATIVE_LT = rememberAlternativeDataMatrix
-                        updateDataAlternativeMatrix(rememberAlternativeDataMatrix)
+                        updateDataAlternativeMatrix(GLOBAl_ALTERNATIVE_LT)
                     }
-
                     4 -> {
-                        rememberAlternativeDataMatrix = setFor4LinguisticTerm
-                        println("$rememberAlternativeEvaluation in when")
-                        GLOBAl_ALTERNATIVE_LT = rememberAlternativeDataMatrix
-                        updateDataAlternativeMatrix(rememberAlternativeDataMatrix)
+                        updateDataAlternativeMatrix(GLOBAl_ALTERNATIVE_LT)
                     }
-
                     5 -> {
-                        rememberAlternativeDataMatrix = setFor5LinguisticTerm
-                        println("$rememberAlternativeEvaluation in when")
-                        GLOBAl_ALTERNATIVE_LT = rememberAlternativeDataMatrix
-                        updateDataAlternativeMatrix(rememberAlternativeDataMatrix)
+                        updateDataAlternativeMatrix(GLOBAl_ALTERNATIVE_LT)
                     }
-
                     6 -> {
-                        rememberAlternativeDataMatrix = setFor6LinguisticTerm
-                        println("$rememberAlternativeEvaluation in when")
-                        GLOBAl_ALTERNATIVE_LT = rememberAlternativeDataMatrix
-                        updateDataAlternativeMatrix(rememberAlternativeDataMatrix)
+                        updateDataAlternativeMatrix(GLOBAl_ALTERNATIVE_LT)
                     }
-
                     7 -> {
-                        rememberAlternativeDataMatrix = setFor7LinguisticTerm
-                        println("$rememberAlternativeEvaluation in when")
-                        GLOBAl_ALTERNATIVE_LT = rememberAlternativeDataMatrix
-                        updateDataAlternativeMatrix(rememberAlternativeDataMatrix)
+                        updateDataAlternativeMatrix(GLOBAl_ALTERNATIVE_LT)
                     }
-
-
                 }
-                var preparationForDataPoint by remember { mutableStateOf(GLOBAl_ALTERNATIVE_LT) }
 
+                var preparationForDataPoint by remember { mutableStateOf(GLOBAl_ALTERNATIVE_LT) }
                 alternativeDataPoints.clear()
                 var maxX by remember { mutableStateOf(0) }
                 var xLabels = remember{ listOf("0")}
                 val yLabels = remember { listOf("1 ", " ", " ", " ", " ", "0 ")}
+
+
 
                 preparationForDataPoint.forEach {
                     if(maxX<it.thirdLimit.toFloat()){
@@ -300,21 +265,29 @@ fun PresentScreenView(
                 onAddCounterCriteriaValue = {
                     if (rememberCriteriaEvaluation < 7) {
                         rememberCriteriaEvaluation++
+                        GLOBAL_COUNT_EV_CRITERIA=rememberCriteriaEvaluation
+                        updateMatrixByCriteriaCount(rememberCriteriaEvaluation)
                     }
                 },
                 onRemoveCounterCriteriaValue = {
                     if (rememberCriteriaEvaluation > 3) {
                         rememberCriteriaEvaluation--
+                        GLOBAL_COUNT_EV_CRITERIA=rememberCriteriaEvaluation
+                        updateMatrixByCriteriaCount(rememberCriteriaEvaluation)
                     }
                 },
                 onAddCounterAlternativeValue = {
                     if (rememberAlternativeEvaluation < 7) {
                         rememberAlternativeEvaluation++
+                        GLOBAL_COUNT_EV_ALTERNATIVE=rememberAlternativeEvaluation
+                        updateMatrixByAlternativeCount(rememberAlternativeEvaluation)
                     }
                 },
                 onRemoveCounterAlternativeValue = {
                     if (rememberAlternativeEvaluation > 3) {
                         rememberAlternativeEvaluation--
+                        GLOBAL_COUNT_EV_ALTERNATIVE=rememberAlternativeEvaluation
+                        updateMatrixByAlternativeCount(rememberAlternativeEvaluation)
                     }
                 }
             )
@@ -386,6 +359,52 @@ fun PresentScreenView(
     }
 
 
+}
+
+fun updateMatrixByAlternativeCount(
+    count:Int
+){
+    when (count) {
+        3 -> {
+            GLOBAl_ALTERNATIVE_LT = setFor3LinguisticTerm
+        }
+        4 -> {
+            GLOBAl_ALTERNATIVE_LT = setFor4LinguisticTerm
+        }
+        5 -> {
+            GLOBAl_ALTERNATIVE_LT = setFor5LinguisticTerm
+        }
+        6 -> {
+            GLOBAl_ALTERNATIVE_LT = setFor6LinguisticTerm
+        }
+
+        7 -> {
+            GLOBAl_ALTERNATIVE_LT = setFor7LinguisticTerm
+        }
+    }
+}
+fun updateMatrixByCriteriaCount(
+    count:Int
+){
+    when (count) {
+        3 -> {
+            GLOBAl_CRITERIA_LT = setFor3LinguisticTerm
+
+        }
+        4 -> {
+            GLOBAl_CRITERIA_LT = setFor4LinguisticTerm
+        }
+        5 -> {
+            GLOBAl_CRITERIA_LT = setFor5LinguisticTerm
+        }
+        6 -> {
+            GLOBAl_CRITERIA_LT = setFor6LinguisticTerm
+        }
+
+        7 -> {
+            GLOBAl_CRITERIA_LT = setFor7LinguisticTerm
+        }
+    }
 }
 
 fun updateDataInList(

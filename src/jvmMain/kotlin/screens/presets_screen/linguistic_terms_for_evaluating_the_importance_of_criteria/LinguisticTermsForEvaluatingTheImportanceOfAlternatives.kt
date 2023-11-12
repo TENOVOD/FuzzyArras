@@ -9,6 +9,7 @@ import screens.presets_screen.updateDataInList
 fun updateDataAlternativeMatrix(
     data: MutableList<LinguisticTermCell>
 ) {
+    println("UPDATE ALTERNATIVE Data: $data")
     data.forEach { el ->
         var remeFullName by remember { mutableStateOf(el.fullName) }
         var remeShortName by remember { mutableStateOf(el.shortName) }

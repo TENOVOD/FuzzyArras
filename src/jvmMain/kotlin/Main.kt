@@ -33,7 +33,11 @@ import test.SuperChanger
 
 
 var GLOBAl_CRITERIA_LT = setFor3LinguisticTerm
-var GLOBAl_ALTERNATIVE_LT = mutableListOf<LinguisticTermCell>()
+var GLOBAl_ALTERNATIVE_LT = setFor3LinguisticTerm
+
+var GLOBAL_COUNT_EV_CRITERIA=3
+var GLOBAL_COUNT_EV_ALTERNATIVE=3
+
 var GLOBAL_COUNT_CRITERIA = 2
 var GLOBAL_COUNT_ALTERNATIVE = 2
 var GLOBAL_COUNT_EXPERT = 1
