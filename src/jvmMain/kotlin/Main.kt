@@ -19,6 +19,7 @@ import data.setFor3LinguisticTerm
 import data.setForExpert
 import models.Criteria
 import models.LinguisticTermCell
+import models.addNewCriteriaOrExpert
 import navcontroller.NavController
 import navcontroller.NavigationHost
 import navcontroller.composable
@@ -28,6 +29,7 @@ import screens.NotificationScreen
 import screens.ProfileScreen
 import screens.SettingScreen
 import screens.elements.Counter
+import screens.evaluation_criteria.EvaluationCriteria
 import screens.presets_screen.PresentScreenView
 import screens.presets_screen.alternatives_names.AlternativesName
 import screens.presets_screen.expert_count.ExpertsName
@@ -50,6 +52,10 @@ var GLOBAL_COUNT_EXPERT = 1
 var GLOBAL_MATRIX_OF_CRITERIA= defaultListFor2Criteria
 var GLOBAL_MATRIX_OF_ALTERNATIVES= setFor2Alternatives
 var GLOBAL_MATRIX_OF_EXPERTS= setForExpert
+
+//SECOND PAGE (EVALUATION CRITERIA)
+var GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
+
 
 @Composable
 @Preview
@@ -122,7 +128,7 @@ enum class Screen(
         label = "Settings",
         icon = Icons.Filled.Settings
     ),
-    NotificationsScreen(
+    EvaluationCriteria(
         label = "Ev.Crit.",
         icon = Icons.Filled.AddCircle
     ),
@@ -158,8 +164,8 @@ fun CustomNavigationHost(
             PresentScreenView(navController)
         }
 
-        composable(Screen.NotificationsScreen.name) {
-            NotificationScreen(navController)
+        composable(Screen.EvaluationCriteria.name) {
+            EvaluationCriteria(navController)
         }
 
         composable(Screen.SettingsScreen.name) {

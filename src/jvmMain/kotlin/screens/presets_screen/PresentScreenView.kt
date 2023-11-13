@@ -5,6 +5,7 @@ import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EV_ALTERNATIVE
 import GLOBAL_COUNT_EV_CRITERIA
 import GLOBAL_COUNT_EXPERT
+import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
 import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
 import Screen
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import data.*
 import models.Criteria
 import models.LinguisticTermCell
+import models.addNewCriteriaOrExpert
 import navcontroller.NavController
 import screens.elements.*
 import screens.presets_screen.alternative_count.AlternativeCountView
@@ -295,6 +297,7 @@ fun PresentScreenView(
                         rememberCriteriaCount++
                         GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
                         updateTableByCriteria(rememberCriteriaCount)
+                        GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                     }
                 },
                 onRemoveCounterCriteriaValue = {
@@ -302,6 +305,7 @@ fun PresentScreenView(
                         rememberCriteriaCount--
                         GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
                         updateTableByCriteria(rememberCriteriaCount)
+                        GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                     }
                 },
                 onCriteriaButtonAction = {
@@ -341,6 +345,7 @@ fun PresentScreenView(
                         rememberExpertsCount++
                         GLOBAL_COUNT_EXPERT=rememberExpertsCount
                         updateTableByExpertsCount(rememberExpertsCount)
+                        GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                     }
                 },
                 onRemoveCounterExpertValue = {
@@ -348,6 +353,7 @@ fun PresentScreenView(
                         rememberExpertsCount--
                         GLOBAL_COUNT_EXPERT=rememberExpertsCount
                         updateTableByExpertsCount(rememberExpertsCount)
+                        GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                     }
                 },
                 onExpertsButton = {

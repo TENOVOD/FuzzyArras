@@ -1,5 +1,6 @@
 package screens.elements
 
+import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -21,7 +22,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import models.Criteria
+import models.CriteriaWithExpertEval
 import models.TypeMinMax
+import screens.evaluation_criteria.updateMapEvaluation
 import screens.presets_screen.settings_of_alternatives.changeGlobalCriteriaMatrix
 import javax.swing.GroupLayout.Alignment
 
@@ -84,10 +87,10 @@ fun RowScope.TableCell(
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontSize = 16.sp
-            ),
+        ),
 
 
-    )
+        )
 }
 
 @Composable
@@ -106,38 +109,92 @@ fun RowScope.TableCellWithText(
         fontSize = 12.sp
     )
 }
+
 @Composable
 fun RowScope.DropdownDemo(
-   criteria:Criteria
+    criteria: Criteria
 ) {
     var expanded by remember { mutableStateOf(false) }
-    val criteriaValue = if(criteria.type==TypeMinMax.MAX) 0 else 1
+    val criteriaValue = if (criteria.type == TypeMinMax.MAX) 0 else 1
     val items = listOf(TypeMinMax.MAX.toString(), TypeMinMax.MIN.toString())
     var selectedIndex by remember { mutableStateOf(criteriaValue) }
-        Column{
-            Text(items[selectedIndex],modifier = Modifier.border(1.dp, Color.Black).width(250.dp).height(34.dp).padding(start = 7.dp,top=4.dp).clickable(onClick = { expanded = true }).background(
-                Color.White))
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier.width(250.dp).background(
-                    Color.LightGray)
-            ) {
-                items.forEachIndexed { index, s ->
-                    DropdownMenuItem(onClick = {
-                        selectedIndex = index
-                        expanded = false
-                        if(selectedIndex==1){
-                            changeGlobalCriteriaMatrix(criteria,TypeMinMax.MIN)
-                        }else{
-                            changeGlobalCriteriaMatrix(criteria,TypeMinMax.MAX)
-                        }
-                    }) {
-                        Text(text = s)
+    Column {
+        Text(
+            items[selectedIndex],
+            modifier = Modifier.border(1.dp, Color.Black).width(250.dp).height(34.dp).padding(start = 7.dp, top = 4.dp)
+                .clickable(onClick = { expanded = true }).background(
+                Color.White
+            )
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.width(250.dp).background(
+                Color.LightGray
+            )
+        ) {
+            items.forEachIndexed { index, s ->
+                DropdownMenuItem(onClick = {
+                    selectedIndex = index
+                    expanded = false
+                    if (selectedIndex == 1) {
+                        changeGlobalCriteriaMatrix(criteria, TypeMinMax.MIN)
+                    } else {
+                        changeGlobalCriteriaMatrix(criteria, TypeMinMax.MAX)
                     }
+                }) {
+                    Text(text = s)
                 }
             }
         }
+    }
+}
 
-
+@Composable
+fun RowScope.DropdownEvaluationCriteria(
+    list:MutableList<String>,
+    key:Int,
+    criteria: CriteriaWithExpertEval
+) {
+    var expanded by remember { mutableStateOf(false) }
+    var criteriaValue = 0
+    for (i in list.indices){
+        if(list[i]==criteria.values[key]){
+            criteriaValue=i
+        }
+    }
+    val items = list.toList()
+    var selectedIndex by remember { mutableStateOf(criteriaValue) }
+    Column(Modifier
+        .border(1.dp, Color.Black)
+        .weight(0.9f)
+        .padding(2.dp)
+        .width(100.dp)
+        .height(30.dp),) {
+        Text(
+            items[selectedIndex],
+            modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
+                .clickable(onClick = { expanded = true }).background(
+                    Color.White
+                )
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.width(100.dp).background(
+                Color.LightGray
+            )
+        ) {
+            items.forEachIndexed { index, s ->
+                DropdownMenuItem(onClick = {
+                    selectedIndex = index
+                    expanded = false
+                    updateMapEvaluation(key,criteria.name,list[selectedIndex])
+                    println(GLOBAL_MATRIX_OF_CRITERIA_EVALUATION[0].values[1])
+                }) {
+                    Text(text = s)
+                }
+            }
+        }
+    }
 }
