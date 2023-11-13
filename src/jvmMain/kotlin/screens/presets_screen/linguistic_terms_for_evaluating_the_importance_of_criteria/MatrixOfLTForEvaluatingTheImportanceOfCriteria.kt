@@ -1,12 +1,16 @@
 package screens.presets_screen.linguistic_terms_for_evaluating_the_importance_of_criteria
 
 import GLOBAl_CRITERIA_LT
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import models.LinguisticTermCell
+import screens.elements.DropdownDemo
 import screens.elements.TableCell
 
 import screens.presets_screen.updateDataInList
+
 
 
 @Composable
@@ -31,6 +35,14 @@ fun setMatrixOfLTForEvaluatingTheImportanceOfCriteria(
         TableCell(secondLimit) { changeSecondLimit(it) }
         TableCell(thirdLimit) { changeThirdLimit(it) }
     }
+
+}
+
+@Composable
+fun setMatrixOfCriteriaValue(
+    criteriaValue:String,
+    onChangeCriteriaValue:(String)->Unit,
+){
 
 }
 

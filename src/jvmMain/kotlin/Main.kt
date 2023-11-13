@@ -13,7 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import data.defaultListFor2Criteria
+import data.setFor2Alternatives
 import data.setFor3LinguisticTerm
+import data.setForExpert
 import models.Criteria
 import models.LinguisticTermCell
 import navcontroller.NavController
@@ -26,6 +29,8 @@ import screens.ProfileScreen
 import screens.SettingScreen
 import screens.elements.Counter
 import screens.presets_screen.PresentScreenView
+import screens.presets_screen.alternatives_names.AlternativesName
+import screens.presets_screen.expert_count.ExpertsName
 import screens.presets_screen.settings_of_alternatives.SettingsOfAlternativesScreen
 import test.CountArray
 import test.JustTextEdit
@@ -42,15 +47,17 @@ var GLOBAL_COUNT_CRITERIA = 2
 var GLOBAL_COUNT_ALTERNATIVE = 2
 var GLOBAL_COUNT_EXPERT = 1
 
-//var GLOBAL_MATRIX_OF_CRITERIA_LT= mutableListOf<Alternative>()
-var GLOBAL_MATRIX_OF_ALTERNATIVE_LT= mutableListOf<Criteria>()
+var GLOBAL_MATRIX_OF_CRITERIA= defaultListFor2Criteria
+var GLOBAL_MATRIX_OF_ALTERNATIVES= setFor2Alternatives
+var GLOBAL_MATRIX_OF_EXPERTS= setForExpert
+
 @Composable
 @Preview
 fun App() {
     
     //PresentScreenView()
-
-    val screens = Screen.values().toList()
+    val prep = Screen.values().toList()
+    val screens = prep.dropLast(3)
     val navController by rememberNavController(Screen.HomeScreen.name)
     val currentScreen by remember {
         navController.currentScreen
@@ -130,6 +137,14 @@ enum class Screen(
     CriteriaSettings(
         label = "Criteria settings",
         icon = Icons.Filled.Done
+    ),
+    AlternativesName(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
+    ),
+    ExpertsName(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
     )
 }
 
@@ -157,6 +172,12 @@ fun CustomNavigationHost(
 
         composable(Screen.CriteriaSettings.name){
             SettingsOfAlternativesScreen(navController)
+        }
+        composable(Screen.AlternativesName.name){
+            AlternativesName(navController)
+        }
+        composable(Screen.ExpertsName.name){
+            ExpertsName(navController)
         }
 
 

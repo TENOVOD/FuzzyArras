@@ -1,11 +1,12 @@
 package models
 
 data class Alternative(
-    var name:String,
-    var type:TypeMinMax
+    var id:Int,
+    var name:String
 ){
 
 }
+
 enum class TypeMinMax(
     name:String
 ){

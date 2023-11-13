@@ -7,6 +7,7 @@ import GLOBAL_COUNT_EV_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
+import Screen
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -19,33 +20,27 @@ import models.LinguisticTermCell
 import navcontroller.NavController
 import screens.elements.*
 import screens.presets_screen.alternative_count.AlternativeCountView
+import screens.presets_screen.alternatives_names.updateTableByAlternative
 
 import screens.presets_screen.criteria_count.CriteriaCountView
+import screens.presets_screen.expert_count.updateTableByExpertsCount
 
 import screens.presets_screen.experts_count.ExpertsCountView
 import screens.presets_screen.linguistic_terms_for_evaluating_the_importance_of_criteria.updateDataAlternativeMatrix
 import screens.presets_screen.linguistic_terms_for_evaluating_the_importance_of_criteria.updateDataMatrix
 
 import screens.presets_screen.parts.сount_LT.CountLT
-
-
-
+import screens.presets_screen.settings_of_alternatives.updateTableByCriteria
 
 
 @Composable
 fun PresentScreenView(
     navController: NavController
 ) {
-    println("START ACTIVITY + ${GLOBAl_CRITERIA_LT}")
     var rememberCriteriaEvaluation by remember { mutableStateOf(GLOBAL_COUNT_EV_CRITERIA) }
     var rememberAlternativeEvaluation by remember { mutableStateOf(GLOBAL_COUNT_EV_ALTERNATIVE) }
     val criteriaDataPoints = remember{ mutableStateListOf(listOf(0f,0f,0f))}
     val alternativeDataPoints = remember{ mutableStateListOf(listOf(0f,0f,0f))}
-    var rememberCriteriaDataMatrix by remember { mutableStateOf(GLOBAl_CRITERIA_LT) }
-    var rememberAlternativeDataMatrix by remember { mutableStateOf(setFor3LinguisticTerm) }
-
-
-    println("Rememem")
 
     Row(
         modifier = Modifier
@@ -86,7 +81,6 @@ fun PresentScreenView(
                         updateDataMatrix(GLOBAl_CRITERIA_LT)
                     }
                 }
-
 
                 var preparationForDataPoint by remember { mutableStateOf(GLOBAl_CRITERIA_LT) }
 
@@ -293,65 +287,71 @@ fun PresentScreenView(
             )
 
             //Criteria counter +-
-            var rememberCriteriaCount by remember { mutableStateOf(2) }
+            var rememberCriteriaCount by remember { mutableStateOf(GLOBAL_COUNT_CRITERIA) }
             CriteriaCountView(
                 rememberCriteriaCount,
                 onAddCounterCriteriaValue = {
                     if (rememberCriteriaCount < 10) {
                         rememberCriteriaCount++
                         GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
+                        updateTableByCriteria(rememberCriteriaCount)
                     }
                 },
                 onRemoveCounterCriteriaValue = {
                     if (rememberCriteriaCount > 2) {
                         rememberCriteriaCount--
                         GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
+                        updateTableByCriteria(rememberCriteriaCount)
                     }
                 },
                 onCriteriaButtonAction = {
-                    navController.navigate(Screen.SettingsScreen.name)
+                    navController.navigate(Screen.CriteriaSettings.name)
                 }
             )
 
             //Alternative counter +-
-            var rememberAlternativeCount by remember { mutableStateOf(2) }
+            var rememberAlternativeCount by remember { mutableStateOf(GLOBAL_COUNT_ALTERNATIVE) }
             AlternativeCountView(
                 rememberAlternativeCount,
                 onAddCounterAlternativeValue = {
                     if (rememberAlternativeCount < 10) {
                         rememberAlternativeCount++
                         GLOBAL_COUNT_ALTERNATIVE=rememberAlternativeCount
+                        updateTableByAlternative(rememberAlternativeCount)
                     }
                 },
                 onRemoveCounterAlternativeValue = {
                     if (rememberAlternativeCount > 2) {
                         rememberAlternativeCount--
                         GLOBAL_COUNT_ALTERNATIVE=rememberAlternativeCount
+                        updateTableByAlternative(rememberAlternativeCount)
                     }
                 },
                 onAlternativeButtonAction = {
-                    //////ADDDD
+                    navController.navigate(Screen.AlternativesName.name)
                 }
             )
 
             // Expert counter +-
-            var rememberExpertsCount by remember { mutableStateOf(1) }
+            var rememberExpertsCount by remember { mutableStateOf(GLOBAL_COUNT_EXPERT) }
             ExpertsCountView(
                 rememberExpertsCount,
                 onAddCounterExpertValue = {
                     if (rememberExpertsCount < 10) {
                         rememberExpertsCount++
                         GLOBAL_COUNT_EXPERT=rememberExpertsCount
+                        updateTableByExpertsCount(rememberExpertsCount)
                     }
                 },
                 onRemoveCounterExpertValue = {
                     if (rememberExpertsCount > 1) {
                         rememberExpertsCount--
                         GLOBAL_COUNT_EXPERT=rememberExpertsCount
+                        updateTableByExpertsCount(rememberExpertsCount)
                     }
                 },
                 onExpertsButton = {
-
+                    navController.navigate(Screen.ExpertsName.name)
                 }
             )
             Text(text = rememberExpertsCount.toString())
