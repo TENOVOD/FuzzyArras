@@ -30,6 +30,7 @@ import screens.ProfileScreen
 import screens.SettingScreen
 import screens.elements.Counter
 import screens.evaluation_criteria.EvaluationCriteria
+import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.CriteriaEvalFuzzyTriangularNumbersScreen
 import screens.presets_screen.PresentScreenView
 import screens.presets_screen.alternatives_names.AlternativesName
 import screens.presets_screen.expert_count.ExpertsName
@@ -55,7 +56,7 @@ var GLOBAL_MATRIX_OF_EXPERTS= setForExpert
 
 //SECOND PAGE (EVALUATION CRITERIA)
 var GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
-
+var GLOBAL_NORMALIZE_OF_CRITERIA_LT = mutableListOf<LinguisticTermCell>()
 
 @Composable
 @Preview
@@ -63,7 +64,7 @@ fun App() {
     
     //PresentScreenView()
     val prep = Screen.values().toList()
-    val screens = prep.dropLast(3)
+    val screens = prep.dropLast(4)
     val navController by rememberNavController(Screen.HomeScreen.name)
     val currentScreen by remember {
         navController.currentScreen
@@ -151,6 +152,10 @@ enum class Screen(
     ExpertsName(
         label = "Criteria settings",
         icon = Icons.Filled.Done
+    ),
+    FuzzyTriangularNumbers(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
     )
 }
 
@@ -184,6 +189,9 @@ fun CustomNavigationHost(
         }
         composable(Screen.ExpertsName.name){
             ExpertsName(navController)
+        }
+        composable(Screen.FuzzyTriangularNumbers.name){
+            CriteriaEvalFuzzyTriangularNumbersScreen(navController)
         }
 
 

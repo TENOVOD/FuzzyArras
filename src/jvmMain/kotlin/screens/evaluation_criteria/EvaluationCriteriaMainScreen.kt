@@ -3,7 +3,9 @@ package screens.evaluation_criteria
 import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
+import GLOBAL_NORMALIZE_OF_CRITERIA_LT
 import GLOBAl_CRITERIA_LT
+import Screen
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,17 +15,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import models.LinguisticTermCell
 import models.getCriteriaById
 import navcontroller.NavController
 import screens.elements.BasicButton
 import screens.elements.DropdownEvaluationCriteria
 import screens.elements.HeaderCell
 import screens.elements.LeftSideMainCell
+import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.CriteriaEvalFuzzyTriangularNumbersScreen
+import kotlin.math.max
 
 @Composable
 fun EvaluationCriteria(
     navController: NavController
 ) {
+    normalizeCriteriaLT()
     val minLTName = GLOBAl_CRITERIA_LT[0].fullName
     if(GLOBAL_MATRIX_OF_CRITERIA_EVALUATION[0].values[1]=="00"){
         for(i in GLOBAL_MATRIX_OF_CRITERIA_EVALUATION.indices){
@@ -32,7 +38,7 @@ fun EvaluationCriteria(
             }
         }
     }
-    
+
     Box(
         modifier = Modifier.fillMaxSize().padding(start = 100.dp)
     ) {
@@ -73,7 +79,9 @@ fun EvaluationCriteria(
             }
             Spacer(modifier = Modifier.height(20.dp))
             Row {
-                BasicButton("FIRST") {}
+                BasicButton("Criterion evaluation in the form of fuzzy triangular numbers") {
+                    navController.navigate(Screen.FuzzyTriangularNumbers.name)
+                }
                 BasicButton("Second") {}
             }
         }
@@ -99,3 +107,25 @@ fun updateMapEvaluation(
     }
 }
 
+fun normalizeCriteriaLT(){
+    var maxValue = 0
+    GLOBAl_CRITERIA_LT.forEach {
+        if(maxValue<it.firstLimit.toInt()){
+            maxValue = it.firstLimit.toInt()
+        }
+        if(maxValue<it.secondLimit.toInt()){
+            maxValue = it.secondLimit.toInt()
+        }
+        if(maxValue<it.thirdLimit.toInt()){
+            maxValue = it.thirdLimit.toInt()
+        }
+    }
+    GLOBAl_CRITERIA_LT.forEach {
+        val firstValue = it.firstLimit.toFloat()/maxValue
+        val secondValue = it.secondLimit.toFloat()/maxValue
+        val thirdValue = it.thirdLimit.toFloat()/maxValue
+        GLOBAL_NORMALIZE_OF_CRITERIA_LT.add(
+            LinguisticTermCell(it.fullName,it.shortName,"%.2f".format(firstValue),"%.2f".format(secondValue),"%.2f".format(thirdValue))
+        )
+    }
+}
