@@ -13,6 +13,7 @@ fun addNewCriteriaOrExpert(
     val emptyMatrixOfCriteriaEvaluation = mutableListOf<CriteriaWithExpertEval>()
     for (i in 1..countOfCriteria){
         var criteria= getCriteriaById(i)
+        println("Criteria name: ${criteria.name}")
         val evalMutableList = mutableMapOf<Int,String>()
         for(j in 1..countOfExpert){
             evalMutableList[j]="00"

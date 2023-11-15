@@ -16,7 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import models.LinguisticTermCell
+import models.calculateCriteriaFuzzyNumbers
 import models.getCriteriaById
+import models.getEmptyCriteriaFuzzyNumbers
 import navcontroller.NavController
 import screens.elements.BasicButton
 import screens.elements.DropdownEvaluationCriteria
@@ -82,7 +84,10 @@ fun EvaluationCriteria(
                 BasicButton("Criterion evaluation in the form of fuzzy triangular numbers") {
                     navController.navigate(Screen.FuzzyTriangularNumbers.name)
                 }
-                BasicButton("Second") {}
+                BasicButton("Estimates in the form of fuzzy numbers based on transformed LT") {
+                    calculateCriteriaFuzzyNumbers()
+                    navController.navigate(Screen.EstimatesFormOfFuzzyNumbersTransformedLTScreen.name)
+                }
             }
         }
 
@@ -108,6 +113,7 @@ fun updateMapEvaluation(
 }
 
 fun normalizeCriteriaLT(){
+    GLOBAL_NORMALIZE_OF_CRITERIA_LT.clear()
     var maxValue = 0
     GLOBAl_CRITERIA_LT.forEach {
         if(maxValue<it.firstLimit.toInt()){

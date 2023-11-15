@@ -1,7 +1,9 @@
 package screens.presets_screen.settings_of_alternatives
 
 import GLOBAL_COUNT_CRITERIA
+import GLOBAL_COUNT_EXPERT
 import GLOBAL_MATRIX_OF_CRITERIA
+import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import data.*
 import models.Criteria
 import models.TypeMinMax
+import models.addNewCriteriaOrExpert
 import navcontroller.NavController
 import screens.elements.DropdownDemo
 import screens.elements.HeaderCell
@@ -67,9 +70,10 @@ fun SettingsOfAlternativesScreen(
                     Button(
                         onClick = {
                             println(GLOBAL_MATRIX_OF_CRITERIA)
+                            GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                             navController.navigate(Screen.HomeScreen.name)
                         }) {
-                        Text("Go to main page")
+                        Text("SAVE AND GO TO MAIN PAGE")
                     }
 
                 }

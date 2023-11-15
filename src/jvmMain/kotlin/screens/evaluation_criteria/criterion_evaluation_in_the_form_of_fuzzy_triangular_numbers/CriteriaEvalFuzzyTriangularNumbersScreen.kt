@@ -62,8 +62,8 @@ fun CriteriaEvalFuzzyTriangularNumbersScreen(
             }
             Spacer(modifier = Modifier.height(20.dp))
             Row {
-                BasicButton("Go to main page") {
-                    navController.navigate(Screen.HomeScreen.name)
+                BasicButton("GO TO PREVIOUS PAGE") {
+                    navController.navigate(Screen.EvaluationCriteria.name)
                 }
             }
         }
@@ -73,8 +73,11 @@ fun CriteriaEvalFuzzyTriangularNumbersScreen(
 }
 
 fun findLimitsByName(name:String): LinguisticTermCell {
+    GLOBAL_NORMALIZE_OF_CRITERIA_LT.forEach {
+        println(" FULL name ${it.fullName} ${it.firstLimit}, ${it.secondLimit}, ${it.thirdLimit}")
+    }
     val result = GLOBAL_NORMALIZE_OF_CRITERIA_LT.find {
-        print(" FULL name ${it.fullName} name=$name")
+        //print(" FULL name ${it.fullName} ${it.firstLimit}, ${it.secondLimit}")
         it.fullName==name
 
     }!!

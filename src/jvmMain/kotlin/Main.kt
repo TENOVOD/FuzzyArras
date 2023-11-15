@@ -17,9 +17,7 @@ import data.defaultListFor2Criteria
 import data.setFor2Alternatives
 import data.setFor3LinguisticTerm
 import data.setForExpert
-import models.Criteria
-import models.LinguisticTermCell
-import models.addNewCriteriaOrExpert
+import models.*
 import navcontroller.NavController
 import navcontroller.NavigationHost
 import navcontroller.composable
@@ -31,6 +29,7 @@ import screens.SettingScreen
 import screens.elements.Counter
 import screens.evaluation_criteria.EvaluationCriteria
 import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.CriteriaEvalFuzzyTriangularNumbersScreen
+import screens.evaluation_criteria.estimates_in_the_form_of_fuzzy_numbers_based_on_transformed_lexical_terms.EstimatesFormOfFuzzyNumbersTransformedLTScreen
 import screens.presets_screen.PresentScreenView
 import screens.presets_screen.alternatives_names.AlternativesName
 import screens.presets_screen.expert_count.ExpertsName
@@ -57,6 +56,8 @@ var GLOBAL_MATRIX_OF_EXPERTS= setForExpert
 //SECOND PAGE (EVALUATION CRITERIA)
 var GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
 var GLOBAL_NORMALIZE_OF_CRITERIA_LT = mutableListOf<LinguisticTermCell>()
+var GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
+
 
 @Composable
 @Preview
@@ -64,7 +65,7 @@ fun App() {
     
     //PresentScreenView()
     val prep = Screen.values().toList()
-    val screens = prep.dropLast(4)
+    val screens = prep.dropLast(5)
     val navController by rememberNavController(Screen.HomeScreen.name)
     val currentScreen by remember {
         navController.currentScreen
@@ -156,6 +157,10 @@ enum class Screen(
     FuzzyTriangularNumbers(
         label = "Criteria settings",
         icon = Icons.Filled.Done
+    ),
+    EstimatesFormOfFuzzyNumbersTransformedLTScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
     )
 }
 
@@ -192,6 +197,9 @@ fun CustomNavigationHost(
         }
         composable(Screen.FuzzyTriangularNumbers.name){
             CriteriaEvalFuzzyTriangularNumbersScreen(navController)
+        }
+        composable(Screen.EstimatesFormOfFuzzyNumbersTransformedLTScreen.name){
+            EstimatesFormOfFuzzyNumbersTransformedLTScreen(navController)
         }
 
 

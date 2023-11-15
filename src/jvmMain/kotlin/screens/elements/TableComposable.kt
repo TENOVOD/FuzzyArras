@@ -21,9 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import models.Criteria
-import models.CriteriaWithExpertEval
-import models.TypeMinMax
+import models.*
 import screens.evaluation_criteria.updateMapEvaluation
 import screens.presets_screen.settings_of_alternatives.changeGlobalCriteriaMatrix
 import javax.swing.GroupLayout.Alignment

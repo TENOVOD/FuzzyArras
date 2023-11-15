@@ -5,6 +5,7 @@ import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EV_ALTERNATIVE
 import GLOBAL_COUNT_EV_CRITERIA
 import GLOBAL_COUNT_EXPERT
+import GLOBAL_CRITERIA_FUZZY_NUMBERS
 import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
 import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
@@ -19,6 +20,7 @@ import data.*
 import models.Criteria
 import models.LinguisticTermCell
 import models.addNewCriteriaOrExpert
+import models.getEmptyCriteriaFuzzyNumbers
 import navcontroller.NavController
 import screens.elements.*
 import screens.presets_screen.alternative_count.AlternativeCountView
@@ -298,6 +300,7 @@ fun PresentScreenView(
                         GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
                         updateTableByCriteria(rememberCriteriaCount)
                         GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
+                        GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
                     }
                 },
                 onRemoveCounterCriteriaValue = {
@@ -306,6 +309,7 @@ fun PresentScreenView(
                         GLOBAL_COUNT_CRITERIA=rememberCriteriaCount
                         updateTableByCriteria(rememberCriteriaCount)
                         GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
+                        GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
                     }
                 },
                 onCriteriaButtonAction = {
@@ -383,7 +387,6 @@ fun updateMatrixByAlternativeCount(
         6 -> {
             GLOBAl_ALTERNATIVE_LT = setFor6LinguisticTerm
         }
-
         7 -> {
             GLOBAl_ALTERNATIVE_LT = setFor7LinguisticTerm
         }
