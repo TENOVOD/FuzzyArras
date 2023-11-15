@@ -1,7 +1,6 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
@@ -13,20 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import data.defaultListFor2Criteria
-import data.setFor2Alternatives
-import data.setFor3LinguisticTerm
-import data.setForExpert
+import data.*
 import models.*
 import navcontroller.NavController
 import navcontroller.NavigationHost
 import navcontroller.composable
 import navcontroller.rememberNavController
-import screens.HomeScreen
-import screens.NotificationScreen
 import screens.ProfileScreen
-import screens.SettingScreen
-import screens.elements.Counter
+import screens.evaluation_alternative.added_window.AggregateScoreScreen
+import screens.evaluation_alternative.EvaluationAlternativeScreen
+import screens.evaluation_alternative.added_window.EstimatesInTheFormOfFuzzyTriangularNumbersScreen
 import screens.evaluation_criteria.EvaluationCriteria
 import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.CriteriaEvalFuzzyTriangularNumbersScreen
 import screens.evaluation_criteria.estimates_in_the_form_of_fuzzy_numbers_based_on_transformed_lexical_terms.EstimatesFormOfFuzzyNumbersTransformedLTScreen
@@ -34,9 +29,6 @@ import screens.presets_screen.PresentScreenView
 import screens.presets_screen.alternatives_names.AlternativesName
 import screens.presets_screen.expert_count.ExpertsName
 import screens.presets_screen.settings_of_alternatives.SettingsOfAlternativesScreen
-import test.CountArray
-import test.JustTextEdit
-import test.SuperChanger
 
 
 var GLOBAl_CRITERIA_LT = setFor3LinguisticTerm
@@ -58,6 +50,13 @@ var GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_C
 var GLOBAL_NORMALIZE_OF_CRITERIA_LT = mutableListOf<LinguisticTermCell>()
 var GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
 
+//THIRD SCREEN (EVALUATION ALTERNATIVE)
+var GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+var SELECTED_EXPERT_INDEX=0
+
+var GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
+
+
 
 @Composable
 @Preview
@@ -65,7 +64,7 @@ fun App() {
     
     //PresentScreenView()
     val prep = Screen.values().toList()
-    val screens = prep.dropLast(5)
+    val screens = prep.dropLast(7)
     val navController by rememberNavController(Screen.HomeScreen.name)
     val currentScreen by remember {
         navController.currentScreen
@@ -134,7 +133,7 @@ enum class Screen(
         label = "Ev.Crit.",
         icon = Icons.Filled.AddCircle
     ),
-    SettingsScreen(
+    EvaluationAlternative(
         label = "Ev.Altern.",
         icon = Icons.Filled.AddCircle
     ),
@@ -161,7 +160,16 @@ enum class Screen(
     EstimatesFormOfFuzzyNumbersTransformedLTScreen(
         label = "Criteria settings",
         icon = Icons.Filled.Done
+    ),
+    AggregateScoreScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
+    ),
+    EstimatesInTheFormOfFuzzyTriangularNumbersScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
     )
+
 }
 
 
@@ -176,10 +184,6 @@ fun CustomNavigationHost(
 
         composable(Screen.EvaluationCriteria.name) {
             EvaluationCriteria(navController)
-        }
-
-        composable(Screen.SettingsScreen.name) {
-            SettingScreen(navController)
         }
 
         composable(Screen.ProfileScreens.name) {
@@ -200,6 +204,15 @@ fun CustomNavigationHost(
         }
         composable(Screen.EstimatesFormOfFuzzyNumbersTransformedLTScreen.name){
             EstimatesFormOfFuzzyNumbersTransformedLTScreen(navController)
+        }
+        composable(Screen.EvaluationAlternative.name){
+            EvaluationAlternativeScreen(navController)
+        }
+        composable(Screen.AggregateScoreScreen.name){
+            AggregateScoreScreen(navController)
+        }
+        composable(Screen.EstimatesInTheFormOfFuzzyTriangularNumbersScreen.name){
+            EstimatesInTheFormOfFuzzyTriangularNumbersScreen(navController)
         }
 
 

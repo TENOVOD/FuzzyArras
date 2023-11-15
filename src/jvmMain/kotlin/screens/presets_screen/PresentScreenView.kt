@@ -1,11 +1,13 @@
 package screens.presets_screen
 
+import GLOBAL_AGGREGATE_SCORE
 import GLOBAL_COUNT_ALTERNATIVE
 import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EV_ALTERNATIVE
 import GLOBAL_COUNT_EV_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAL_CRITERIA_FUZZY_NUMBERS
+import GLOBAL_EXPERTS_EVALUATION_LIST
 import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
 import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
@@ -17,10 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import data.*
-import models.Criteria
-import models.LinguisticTermCell
-import models.addNewCriteriaOrExpert
-import models.getEmptyCriteriaFuzzyNumbers
+import models.*
 import navcontroller.NavController
 import screens.elements.*
 import screens.presets_screen.alternative_count.AlternativeCountView
@@ -175,7 +174,7 @@ fun PresentScreenView(
                     HeaderCell("")
                     HeaderCell("")
                 }
-                println("NEEWEWEWEW")
+
                 when (rememberAlternativeEvaluation) {
                     3 -> {
                         updateDataAlternativeMatrix(GLOBAl_ALTERNATIVE_LT)
@@ -301,6 +300,8 @@ fun PresentScreenView(
                         updateTableByCriteria(rememberCriteriaCount)
                         GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                         GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
+                        GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+                        GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
                     }
                 },
                 onRemoveCounterCriteriaValue = {
@@ -310,6 +311,8 @@ fun PresentScreenView(
                         updateTableByCriteria(rememberCriteriaCount)
                         GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                         GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
+                        GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+                        GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
                     }
                 },
                 onCriteriaButtonAction = {
@@ -326,6 +329,8 @@ fun PresentScreenView(
                         rememberAlternativeCount++
                         GLOBAL_COUNT_ALTERNATIVE=rememberAlternativeCount
                         updateTableByAlternative(rememberAlternativeCount)
+                        GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+                        GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
                     }
                 },
                 onRemoveCounterAlternativeValue = {
@@ -333,6 +338,8 @@ fun PresentScreenView(
                         rememberAlternativeCount--
                         GLOBAL_COUNT_ALTERNATIVE=rememberAlternativeCount
                         updateTableByAlternative(rememberAlternativeCount)
+                        GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+                        GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
                     }
                 },
                 onAlternativeButtonAction = {
@@ -350,6 +357,8 @@ fun PresentScreenView(
                         GLOBAL_COUNT_EXPERT=rememberExpertsCount
                         updateTableByExpertsCount(rememberExpertsCount)
                         GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
+                        GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+                        GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
                     }
                 },
                 onRemoveCounterExpertValue = {
@@ -358,6 +367,8 @@ fun PresentScreenView(
                         GLOBAL_COUNT_EXPERT=rememberExpertsCount
                         updateTableByExpertsCount(rememberExpertsCount)
                         GLOBAL_MATRIX_OF_CRITERIA_EVALUATION=addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
+                        GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
+                        GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
                     }
                 },
                 onExpertsButton = {

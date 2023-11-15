@@ -5,3 +5,11 @@ data class Expert(
     var name:String
 ) {
 }
+
+fun getExpertsNames(list:MutableList<Expert>): MutableList<String> {
+    val result = mutableListOf<String>()
+    for (e in list){
+        result.add(e.name)
+    }
+    return result
+}
