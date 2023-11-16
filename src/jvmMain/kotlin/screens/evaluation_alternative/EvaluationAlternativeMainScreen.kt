@@ -22,12 +22,14 @@ import data.getAggregateStore
 import models.calculateCriteriaFuzzyNumbers
 import navcontroller.NavController
 import screens.elements.*
+import screens.evaluation_criteria.normalizeAlternativeLT
 import javax.swing.GroupLayout.Alignment
 
 @Composable
 fun EvaluationAlternativeScreen(
     navController: NavController
 ) {
+    normalizeAlternativeLT()
     Box(
         modifier = Modifier.fillMaxSize().padding(start = 100.dp)
     ) {
@@ -138,11 +140,11 @@ fun EvaluationAlternativeScreen(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         BasicButton("Estimates in the form of fuzzy numbers") {
-                            //navController.navigate(Screen.FuzzyTriangularNumbers.name)
+                            navController.navigate(Screen.EstimatesInTheFormOfFuzzyNumberScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         BasicButton("Optimal criteria values") {
-                            //navController.navigate(Screen.FuzzyTriangularNumbers.name)
+                            navController.navigate(Screen.OptimalCriteriaValuesScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         BasicButton("Normalized matrix") {

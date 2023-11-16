@@ -3,7 +3,9 @@ package screens.evaluation_criteria
 import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
+import GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT
 import GLOBAL_NORMALIZE_OF_CRITERIA_LT
+import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
 import Screen
 import androidx.compose.foundation.BorderStroke
@@ -131,6 +133,29 @@ fun normalizeCriteriaLT(){
         val secondValue = it.secondLimit.toFloat()/maxValue
         val thirdValue = it.thirdLimit.toFloat()/maxValue
         GLOBAL_NORMALIZE_OF_CRITERIA_LT.add(
+            LinguisticTermCell(it.fullName,it.shortName,"%.2f".format(firstValue),"%.2f".format(secondValue),"%.2f".format(thirdValue))
+        )
+    }
+}
+fun normalizeAlternativeLT(){
+    GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT.clear()
+    var maxValue = 0
+    GLOBAl_ALTERNATIVE_LT.forEach {
+        if(maxValue<it.firstLimit.toInt()){
+            maxValue = it.firstLimit.toInt()
+        }
+        if(maxValue<it.secondLimit.toInt()){
+            maxValue = it.secondLimit.toInt()
+        }
+        if(maxValue<it.thirdLimit.toInt()){
+            maxValue = it.thirdLimit.toInt()
+        }
+    }
+    GLOBAl_ALTERNATIVE_LT.forEach {
+        val firstValue = it.firstLimit.toFloat()/maxValue
+        val secondValue = it.secondLimit.toFloat()/maxValue
+        val thirdValue = it.thirdLimit.toFloat()/maxValue
+        GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT.add(
             LinguisticTermCell(it.fullName,it.shortName,"%.2f".format(firstValue),"%.2f".format(secondValue),"%.2f".format(thirdValue))
         )
     }

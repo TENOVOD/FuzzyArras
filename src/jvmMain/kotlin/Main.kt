@@ -19,9 +19,11 @@ import navcontroller.NavigationHost
 import navcontroller.composable
 import navcontroller.rememberNavController
 import screens.ProfileScreen
-import screens.evaluation_alternative.added_window.AggregateScoreScreen
+import screens.evaluation_alternative.addition_windows.AggregateScoreScreen
 import screens.evaluation_alternative.EvaluationAlternativeScreen
-import screens.evaluation_alternative.added_window.EstimatesInTheFormOfFuzzyTriangularNumbersScreen
+import screens.evaluation_alternative.addition_windows.EstimatesInTheFormOfFuzzyNumber
+import screens.evaluation_alternative.addition_windows.EstimatesInTheFormOfFuzzyTriangularNumbersScreen
+import screens.evaluation_alternative.addition_windows.OptimalCriteriaValuesScreen
 import screens.evaluation_criteria.EvaluationCriteria
 import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.CriteriaEvalFuzzyTriangularNumbersScreen
 import screens.evaluation_criteria.estimates_in_the_form_of_fuzzy_numbers_based_on_transformed_lexical_terms.EstimatesFormOfFuzzyNumbersTransformedLTScreen
@@ -55,7 +57,9 @@ var GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
 var SELECTED_EXPERT_INDEX=0
 
 var GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
-
+var GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT = mutableListOf<LinguisticTermCell>()
+var GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
+var GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
 
 
 @Composable
@@ -64,7 +68,7 @@ fun App() {
     
     //PresentScreenView()
     val prep = Screen.values().toList()
-    val screens = prep.dropLast(7)
+    val screens = prep.dropLast(8)
     val navController by rememberNavController(Screen.HomeScreen.name)
     val currentScreen by remember {
         navController.currentScreen
@@ -168,6 +172,14 @@ enum class Screen(
     EstimatesInTheFormOfFuzzyTriangularNumbersScreen(
         label = "Criteria settings",
         icon = Icons.Filled.Done
+    ),
+    EstimatesInTheFormOfFuzzyNumberScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
+    ),
+    OptimalCriteriaValuesScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
     )
 
 }
@@ -213,6 +225,12 @@ fun CustomNavigationHost(
         }
         composable(Screen.EstimatesInTheFormOfFuzzyTriangularNumbersScreen.name){
             EstimatesInTheFormOfFuzzyTriangularNumbersScreen(navController)
+        }
+        composable(Screen.EstimatesInTheFormOfFuzzyNumberScreen.name){
+            EstimatesInTheFormOfFuzzyNumber(navController)
+        }
+        composable(Screen.OptimalCriteriaValuesScreen.name){
+            OptimalCriteriaValuesScreen(navController)
         }
 
 

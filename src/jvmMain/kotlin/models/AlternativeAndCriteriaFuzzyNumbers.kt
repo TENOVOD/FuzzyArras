@@ -1,17 +1,15 @@
 package models
 
-import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAL_CRITERIA_FUZZY_NUMBERS
 import GLOBAL_MATRIX_OF_CRITERIA
 import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
-import GLOBAL_NORMALIZE_OF_CRITERIA_LT
 import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.findLimitsByName
 
 
 import kotlin.math.pow
 
-data class CriteriaFuzzyNumbers(
+data class AlternativeAndCriteriaFuzzyNumbers(
     var name: String,
     var lValue: Float,
     var lshtValue: Float,
@@ -20,11 +18,11 @@ data class CriteriaFuzzyNumbers(
     var uValue: Float
 )
 
-fun getEmptyCriteriaFuzzyNumbers(): MutableList<CriteriaFuzzyNumbers> {
-    val result = mutableListOf<CriteriaFuzzyNumbers>()
+fun getEmptyCriteriaFuzzyNumbers(): MutableList<AlternativeAndCriteriaFuzzyNumbers> {
+    val result = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
     GLOBAL_MATRIX_OF_CRITERIA.forEach {
         result.add(
-            CriteriaFuzzyNumbers("", 0f, 0f, 0f, 0f, 0f)
+            AlternativeAndCriteriaFuzzyNumbers("", 0f, 0f, 0f, 0f, 0f)
         )
     }
     return result

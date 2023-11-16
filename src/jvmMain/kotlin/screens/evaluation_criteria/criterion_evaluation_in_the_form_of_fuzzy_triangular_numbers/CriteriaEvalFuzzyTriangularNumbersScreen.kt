@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import models.LinguisticTermCell
 import navcontroller.NavController
 import screens.elements.*
+import screens.evaluation_criteria.normalizeCriteriaLT
 
 @Composable
 fun CriteriaEvalFuzzyTriangularNumbersScreen(
@@ -73,6 +74,7 @@ fun CriteriaEvalFuzzyTriangularNumbersScreen(
 }
 
 fun findLimitsByName(name:String): LinguisticTermCell {
+    normalizeCriteriaLT()
     GLOBAL_NORMALIZE_OF_CRITERIA_LT.forEach {
         println(" FULL name ${it.fullName} ${it.firstLimit}, ${it.secondLimit}, ${it.thirdLimit}")
     }

@@ -1,9 +1,8 @@
-package screens.evaluation_alternative.added_window
+package screens.evaluation_alternative.addition_windows
 
 import GLOBAL_AGGREGATE_SCORE
 import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EXPERT
-import GLOBAl_ALTERNATIVE_LT
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,15 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import models.LinguisticTermCell
 import navcontroller.NavController
-import screens.elements.BasicButton
-import screens.elements.HeaderCell
-import screens.elements.LeftSideMainCell
-import screens.elements.TableCellWithText
+import screens.elements.*
 
 @Composable
-fun EstimatesInTheFormOfFuzzyTriangularNumbersScreen(
+fun AggregateScoreScreen(
     navController: NavController
 ){
     Box(
@@ -55,7 +50,7 @@ fun EstimatesInTheFormOfFuzzyTriangularNumbersScreen(
                             for(c in 1..GLOBAL_COUNT_CRITERIA){
                                 var cellText = "<"
                                 for(i in 0 until GLOBAL_COUNT_EXPERT){
-                                    cellText+="${findLimitsByShortName(it.table[c]!![i])}, "
+                                    cellText+="${it.table[c]!![i]}, "
                                 }
                                 cellText+=">"
                                 TableCellWithText("$cellText")
@@ -75,15 +70,4 @@ fun EstimatesInTheFormOfFuzzyTriangularNumbersScreen(
         }
 
     }
-}
-fun findLimitsByShortName(shortName:String):String{
-    var result="("
-    var temp=LinguisticTermCell("","","","","")
-    GLOBAl_ALTERNATIVE_LT.forEach {
-        if(it.shortName==shortName){
-            temp=it
-        }
-    }
-    result="(${temp.firstLimit}, ${temp.secondLimit}, ${temp.thirdLimit})"
-    return  result
 }
