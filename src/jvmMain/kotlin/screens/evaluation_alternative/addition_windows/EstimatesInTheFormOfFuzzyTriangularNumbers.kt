@@ -48,9 +48,9 @@ fun EstimatesInTheFormOfFuzzyTriangularNumbersScreen(
                             HeaderCell("Crt #$i")
                         }
                     }
-                    println("BEFORE LOOP $GLOBAL_AGGREGATE_SCORE")
+
                     GLOBAL_AGGREGATE_SCORE.forEach {
-                        println("IN LOOP $it")
+
                         Row {
                             LeftSideMainCell(it.altName)
 
@@ -82,7 +82,6 @@ fun getLimitsInStringByShortName(shortName:String):String{
     var result="("
     var temp=LinguisticTermCell("","","","","")
     GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT.forEach {
-        println("CHECK NORMALIZE")
         if(it.shortName==shortName){
             temp=it
         }

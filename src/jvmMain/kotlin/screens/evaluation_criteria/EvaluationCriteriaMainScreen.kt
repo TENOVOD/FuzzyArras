@@ -133,7 +133,7 @@ fun normalizeCriteriaLT(){
         val secondValue = it.secondLimit.toFloat()/maxValue
         val thirdValue = it.thirdLimit.toFloat()/maxValue
         GLOBAL_NORMALIZE_OF_CRITERIA_LT.add(
-            LinguisticTermCell(it.fullName,it.shortName,"%.2f".format(firstValue),"%.2f".format(secondValue),"%.2f".format(thirdValue))
+            LinguisticTermCell(it.fullName,it.shortName,firstValue.toString(),secondValue.toString(),thirdValue.toString())
         )
     }
 }
@@ -156,7 +156,7 @@ fun normalizeAlternativeLT(){
         val secondValue = it.secondLimit.toFloat()/maxValue
         val thirdValue = it.thirdLimit.toFloat()/maxValue
         GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT.add(
-            LinguisticTermCell(it.fullName,it.shortName,"%.2f".format(firstValue),"%.2f".format(secondValue),"%.2f".format(thirdValue))
+            LinguisticTermCell(it.fullName,it.shortName,firstValue.toString(),secondValue.toString(),thirdValue.toString())
         )
     }
 }

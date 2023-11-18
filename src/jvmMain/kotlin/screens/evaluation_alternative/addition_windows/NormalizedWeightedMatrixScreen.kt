@@ -8,6 +8,7 @@ import GLOBAL_MATRIX_OF_CRITERIA
 import GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX
 import GLOBAL_NORMALIZED_WEIGHTED_MATRIX
 import GLOBAL_RESULT
+import GLOBAL_S_VAlUES
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -30,6 +31,9 @@ fun NormalizedWeightedMatrixScreen(
     navController: NavController
 ) {
     normalizeWeightedMatrix()
+    println("IN SCREEEN")
+
+    println("222IN SCREEEN")
     Box(
         modifier = Modifier.fillMaxSize().padding(start = 100.dp)
 
@@ -113,6 +117,7 @@ fun normalizeWeightedMatrix() {
 
         GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX.forEach { el ->
             if (fn.name == el.first) {
+
                 val lValue = fn.lValue * el.second.lValue
                 val lshtValue = fn.lshtValue * el.second.lshtValue
                 val mValue = fn.mValue * el.second.mValue
@@ -130,46 +135,101 @@ fun normalizeWeightedMatrix() {
             }
         }
     }
+
     transformFuzzyNumberToClearNumbers()
 
 }
 
 fun transformFuzzyNumberToClearNumbers() {
+    println("1GLOBAL_NORMALIZED_WEIGHTED_MATRIX")
+    GLOBAL_NORMALIZED_WEIGHTED_MATRIX.forEach {
+        println(it)
+    }
+    println("2GLOBAL_NORMALIZED_WEIGHTED_MATRIX")
+
     GLOBAL_RESULT.clear()
+    GLOBAL_S_VAlUES.clear()
     var indexCriteria = 0
-    var maxIndexCriteria = GLOBAL_COUNT_CRITERIA - 1
+    //var maxIndexCriteria = GLOBAL_COUNT_CRITERIA - 1
     for (i in 0..GLOBAL_COUNT_ALTERNATIVE) {
-        val tempAlternativeCriteriaFuzzyNumbers = GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second
+        val arrayOfPosition = Array<Int>(GLOBAL_COUNT_CRITERIA){0}
+        for(j in arrayOfPosition.indices){
+            if(j==0){
+                arrayOfPosition[j]=i
+            }else{
+                arrayOfPosition[j]=i+(GLOBAL_COUNT_ALTERNATIVE+1)*j
+            }
+        }
+        val tempAlternativeCriteriaFuzzyNumbers = GLOBAL_NORMALIZED_WEIGHTED_MATRIX[arrayOfPosition[0]].second.copy()
+
+        println("\n\nCHECK ARRR")
+        arrayOfPosition.forEach {
+            println("index: ${it}")
+        }
+        println("ARRR\n" +
+                "\n")
+
+        for(j in arrayOfPosition.indices){
+            if(j!=0){
+                println("BEFOREIn loop temp!: $tempAlternativeCriteriaFuzzyNumbers")
+                tempAlternativeCriteriaFuzzyNumbers.lValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[arrayOfPosition[j]].second.lValue
+                tempAlternativeCriteriaFuzzyNumbers.lshtValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[arrayOfPosition[j]].second.lshtValue
+                tempAlternativeCriteriaFuzzyNumbers.mValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[arrayOfPosition[j]].second.mValue
+                tempAlternativeCriteriaFuzzyNumbers.ushtValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[arrayOfPosition[j]].second.ushtValue
+                tempAlternativeCriteriaFuzzyNumbers.uValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[arrayOfPosition[j]].second.uValue
+                println("AFTER loop temp!: $tempAlternativeCriteriaFuzzyNumbers")
+            }
+        }
+
+
+        /*val tempAlternativeCriteriaFuzzyNumbers = GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second.copy()
         var isFirstElement = true
 
-        GLOBAL_NORMALIZED_WEIGHTED_MATRIX.forEach {
-                if(isFirstElement){
-                    isFirstElement=false
-                }else{
-                    if (indexCriteria % (GLOBAL_COUNT_ALTERNATIVE + 1) == 0) {
-                        tempAlternativeCriteriaFuzzyNumbers.lValue += it.second.lValue
-                        tempAlternativeCriteriaFuzzyNumbers.lshtValue += it.second.lshtValue
-                        tempAlternativeCriteriaFuzzyNumbers.mValue += it.second.mValue
-                        tempAlternativeCriteriaFuzzyNumbers.ushtValue += it.second.ushtValue
-                        tempAlternativeCriteriaFuzzyNumbers.uValue += it.second.uValue
-
-                    }
+        for (j in GLOBAL_NORMALIZED_WEIGHTED_MATRIX.indices){
+            if(isFirstElement){
+                isFirstElement=false
+            }else{
+                if ((GLOBAL_COUNT_ALTERNATIVE + 1)%indexCriteria  == 0) {
+                    tempAlternativeCriteriaFuzzyNumbers.lValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second.lValue
+                    tempAlternativeCriteriaFuzzyNumbers.lshtValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second.lshtValue
+                    tempAlternativeCriteriaFuzzyNumbers.mValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second.mValue
+                    tempAlternativeCriteriaFuzzyNumbers.ushtValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second.ushtValue
+                    tempAlternativeCriteriaFuzzyNumbers.uValue += GLOBAL_NORMALIZED_WEIGHTED_MATRIX[i].second.uValue
                 }
-
-
-
+            }
             indexCriteria++
-        }
+        }*/
+        println("000000 temp!: $tempAlternativeCriteriaFuzzyNumbers")
+
         if (i == 0) {
             GLOBAL_RESULT.add("Optimal alternative" to tempAlternativeCriteriaFuzzyNumbers)
+            val S = (tempAlternativeCriteriaFuzzyNumbers.lValue+tempAlternativeCriteriaFuzzyNumbers.lshtValue+tempAlternativeCriteriaFuzzyNumbers.mValue+tempAlternativeCriteriaFuzzyNumbers.uValue+tempAlternativeCriteriaFuzzyNumbers.ushtValue)/5f
+            GLOBAL_S_VAlUES.add("Optimal alternative" to arrayOf(S,0f))
         } else {
             GLOBAL_RESULT.add(GLOBAL_MATRIX_OF_ALTERNATIVES[i - 1].name to tempAlternativeCriteriaFuzzyNumbers)
+            val S = (tempAlternativeCriteriaFuzzyNumbers.lValue+tempAlternativeCriteriaFuzzyNumbers.lshtValue+tempAlternativeCriteriaFuzzyNumbers.mValue+tempAlternativeCriteriaFuzzyNumbers.uValue+tempAlternativeCriteriaFuzzyNumbers.ushtValue)/5f
+            GLOBAL_S_VAlUES.add(GLOBAL_MATRIX_OF_ALTERNATIVES[i - 1].name to arrayOf(S,0f))
         }
 
     }
-    println("RESSSSSUUUUULT")
+    println("1RESSSULLLT")
     GLOBAL_RESULT.forEach {
         println(it)
     }
-    println("FINISH")
+    println("2RESSSULLLT")
+    println("1GLOBAL_S_VAlUES")
+    GLOBAL_S_VAlUES.forEach {
+        println(it)
+    }
+    println("2GLOBAL_S_VAlUES")
+
+    var isFirstElement = true
+    var optimalValue = 0f
+    for (i in GLOBAL_S_VAlUES.indices){
+        if(isFirstElement){
+            isFirstElement=false
+            optimalValue=GLOBAL_S_VAlUES[i].second[0]
+        }
+        GLOBAL_S_VAlUES[i].second[1]=GLOBAL_S_VAlUES[i].second[0]/optimalValue
+    }
 }

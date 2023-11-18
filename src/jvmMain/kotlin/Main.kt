@@ -18,7 +18,7 @@ import navcontroller.NavController
 import navcontroller.NavigationHost
 import navcontroller.composable
 import navcontroller.rememberNavController
-import screens.ProfileScreen
+import screens.ResultScreen
 import screens.evaluation_alternative.EvaluationAlternativeScreen
 import screens.evaluation_alternative.addition_windows.*
 import screens.evaluation_criteria.EvaluationCriteria
@@ -62,7 +62,7 @@ var GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX = mutableListOf<Pair<String,Alternative
 var GLOBAL_NORMALIZED_WEIGHTED_MATRIX = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
 
 var GLOBAL_RESULT = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
-
+var GLOBAL_S_VAlUES = mutableListOf<Pair<String,Array<Float>>>()
 @Composable
 @Preview
 fun App() {
@@ -142,7 +142,7 @@ enum class Screen(
         label = "Ev.Altern.",
         icon = Icons.Filled.AddCircle
     ),
-    ProfileScreens(
+    ResultScreen(
         label = "Result",
         icon = Icons.Filled.Done
     ),
@@ -207,8 +207,8 @@ fun CustomNavigationHost(
             EvaluationCriteria(navController)
         }
 
-        composable(Screen.ProfileScreens.name) {
-            ProfileScreen(navController)
+        composable(Screen.ResultScreen.name) {
+            ResultScreen(navController)
         }
 
         composable(Screen.CriteriaSettings.name){

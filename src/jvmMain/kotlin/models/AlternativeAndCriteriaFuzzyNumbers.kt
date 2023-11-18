@@ -84,9 +84,9 @@ fun calculateCriteriaFuzzyNumbers() {
 
         GLOBAL_CRITERIA_FUZZY_NUMBERS[index].name=el.name
         GLOBAL_CRITERIA_FUZZY_NUMBERS[index].lValue=lValue
-        GLOBAL_CRITERIA_FUZZY_NUMBERS[index].lshtValue="%.2f".format(lshtValue).toFloat()
-        GLOBAL_CRITERIA_FUZZY_NUMBERS[index].mValue="%.2f".format(mValue).toFloat()
-        GLOBAL_CRITERIA_FUZZY_NUMBERS[index].ushtValue="%.2f".format(ushtValue).toFloat()
+        GLOBAL_CRITERIA_FUZZY_NUMBERS[index].lshtValue=lshtValue
+        GLOBAL_CRITERIA_FUZZY_NUMBERS[index].mValue=mValue
+        GLOBAL_CRITERIA_FUZZY_NUMBERS[index].ushtValue=ushtValue
         GLOBAL_CRITERIA_FUZZY_NUMBERS[index].uValue=uValue
         index++
     }
