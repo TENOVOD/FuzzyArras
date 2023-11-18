@@ -41,12 +41,10 @@ fun AggregateScoreScreen(
                             HeaderCell("Crt #$i")
                         }
                     }
-                    println("BEFORE LOOP $GLOBAL_AGGREGATE_SCORE")
+
                     GLOBAL_AGGREGATE_SCORE.forEach {
-                        println("IN LOOP $it")
                         Row {
                             LeftSideMainCell(it.altName)
-
                             for(c in 1..GLOBAL_COUNT_CRITERIA){
                                 var cellText = "<"
                                 for(i in 0 until GLOBAL_COUNT_EXPERT){

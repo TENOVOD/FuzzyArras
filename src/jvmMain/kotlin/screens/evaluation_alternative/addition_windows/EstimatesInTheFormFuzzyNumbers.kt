@@ -12,9 +12,12 @@ import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -30,6 +33,7 @@ import kotlin.math.pow
 fun EstimatesInTheFormOfFuzzyNumber(
     navController: NavController
 ) {
+    GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS.clear()
     Box(
         modifier = Modifier.fillMaxSize().padding(start = 100.dp)
     ) {
@@ -41,7 +45,8 @@ fun EstimatesInTheFormOfFuzzyNumber(
                     .padding(15.dp)
                     .width(1750.dp)
                     .height(800.dp)
-                    .fillMaxHeight(0.5f),
+                    .fillMaxHeight(0.5f)
+                    .verticalScroll(rememberScrollState()),
                 color = Color.Transparent,
             ) {
                 Column(
@@ -58,11 +63,6 @@ fun EstimatesInTheFormOfFuzzyNumber(
                         }
                         for (c in 1..GLOBAL_COUNT_CRITERIA) {
                             val arr = it.table[c]
-                            println("LIMITS ARR STRING LIKE L M  c=$c")
-                            arr?.forEach {
-                                println(it)
-                            }
-                            println("")
                             val arrOfMinValues = Array<Float>(GLOBAL_COUNT_EXPERT) { 0f }
                             val arrOfMiddleValues = Array(GLOBAL_COUNT_EXPERT) { 0f }
                             val arrOfMaxValues = Array(GLOBAL_COUNT_EXPERT) { 0f }
@@ -71,10 +71,6 @@ fun EstimatesInTheFormOfFuzzyNumber(
                                 val limitsArray = getLimitsByShortName(arr[i])
 
                                 arrOfMinValues[i] = limitsArray.min()
-//                                println("Min arr + it.c = $it")
-//                                arrOfMinValues.forEach { el->
-//                                    println(el)
-//                                }
                                 arrOfMaxValues[i] = limitsArray.max()
                                 arrOfMiddleValues[i] = limitsArray[1]
                             }
@@ -98,7 +94,7 @@ fun EstimatesInTheFormOfFuzzyNumber(
                             val mValue = multMiddleValue.pow((1 / 3f))
                             val ushtValue = multMaxValue.pow((1 / 3f))
                             val uValue = arrOfMaxValues.max()
-                            GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS.add(AlternativeAndCriteriaFuzzyNumbers(
+                            GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS.add(it.altName to  AlternativeAndCriteriaFuzzyNumbers(
                                 GLOBAL_MATRIX_OF_CRITERIA[c-1].name,
                                 lValue,
                                 lshtValue,
@@ -118,6 +114,7 @@ fun EstimatesInTheFormOfFuzzyNumber(
                         }
                         Spacer(modifier = Modifier.height(20.dp))
                     }
+                    GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE.clear()
                     GLOBAL_MATRIX_OF_CRITERIA.forEach {
                         GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE.add(chooseMinOrMaxCriteria(criteriaName = it.name, type = it.type))
                     }
@@ -155,8 +152,8 @@ fun chooseMinOrMaxCriteria(
 ): AlternativeAndCriteriaFuzzyNumbers {
     val tempList = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
     GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS.forEach {
-        if(criteriaName==it.name){
-            tempList.add(it)
+        if(criteriaName==it.second.name){
+            tempList.add(it.second)
         }
     }
     var lValue = tempList[0].lValue

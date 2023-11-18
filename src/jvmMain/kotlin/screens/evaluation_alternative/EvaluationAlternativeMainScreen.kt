@@ -22,6 +22,7 @@ import data.getAggregateStore
 import models.calculateCriteriaFuzzyNumbers
 import navcontroller.NavController
 import screens.elements.*
+import screens.evaluation_alternative.addition_windows.NormalizedWeightedMatrixScreen
 import screens.evaluation_criteria.normalizeAlternativeLT
 import javax.swing.GroupLayout.Alignment
 
@@ -77,7 +78,6 @@ fun EvaluationAlternativeScreen(
                             }
                         }
 
-                        println("Selected index: $selectedIndex ExpList: $expertAlternativeEvaluation")
                         val listOfAlternativeLt = mutableListOf<String>()
                         GLOBAl_ALTERNATIVE_LT.forEach {
                             listOfAlternativeLt.add(it.fullName)
@@ -148,11 +148,12 @@ fun EvaluationAlternativeScreen(
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         BasicButton("Normalized matrix") {
-                            //navController.navigate(Screen.FuzzyTriangularNumbers.name)
+                            navController.navigate(Screen.NormalizedMatrixScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         BasicButton("Normalized weighted matrix") {
-                            //navController.navigate(Screen.FuzzyTriangularNumbers.name)
+
+                            navController.navigate(Screen.NormalizedWeightedMatrixScreen.name)
                         }
                     }
 

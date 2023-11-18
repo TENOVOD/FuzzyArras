@@ -57,7 +57,8 @@ fun OptimalCriteriaValuesScreen(
 
                 }
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(30.dp))
+            calculateNormalizeMatrix()
             Row {
                 BasicButton("GO TO PREVIOUS PAGE") {
                     navController.navigate(Screen.EvaluationAlternative.name)

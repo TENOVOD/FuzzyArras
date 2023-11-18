@@ -387,19 +387,19 @@ fun updateMatrixByAlternativeCount(
 ){
     when (count) {
         3 -> {
-            GLOBAl_ALTERNATIVE_LT = setFor3LinguisticTerm
+            GLOBAl_ALTERNATIVE_LT = setFor3AlternativeTerm
         }
         4 -> {
-            GLOBAl_ALTERNATIVE_LT = setFor4LinguisticTerm
+            GLOBAl_ALTERNATIVE_LT = setFor4AlternativeTerm
         }
         5 -> {
-            GLOBAl_ALTERNATIVE_LT = setFor5LinguisticTerm
+            GLOBAl_ALTERNATIVE_LT = setFor5AlternativeTerm
         }
         6 -> {
-            GLOBAl_ALTERNATIVE_LT = setFor6LinguisticTerm
+            GLOBAl_ALTERNATIVE_LT = setFor6AlternativeTerm
         }
         7 -> {
-            GLOBAl_ALTERNATIVE_LT = setFor7LinguisticTerm
+            GLOBAl_ALTERNATIVE_LT = setFor7AlternativeTerm
         }
     }
 }

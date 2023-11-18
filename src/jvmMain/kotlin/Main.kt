@@ -19,11 +19,8 @@ import navcontroller.NavigationHost
 import navcontroller.composable
 import navcontroller.rememberNavController
 import screens.ProfileScreen
-import screens.evaluation_alternative.addition_windows.AggregateScoreScreen
 import screens.evaluation_alternative.EvaluationAlternativeScreen
-import screens.evaluation_alternative.addition_windows.EstimatesInTheFormOfFuzzyNumber
-import screens.evaluation_alternative.addition_windows.EstimatesInTheFormOfFuzzyTriangularNumbersScreen
-import screens.evaluation_alternative.addition_windows.OptimalCriteriaValuesScreen
+import screens.evaluation_alternative.addition_windows.*
 import screens.evaluation_criteria.EvaluationCriteria
 import screens.evaluation_criteria.criterion_evaluation_in_the_form_of_fuzzy_triangular_numbers.CriteriaEvalFuzzyTriangularNumbersScreen
 import screens.evaluation_criteria.estimates_in_the_form_of_fuzzy_numbers_based_on_transformed_lexical_terms.EstimatesFormOfFuzzyNumbersTransformedLTScreen
@@ -34,7 +31,7 @@ import screens.presets_screen.settings_of_alternatives.SettingsOfAlternativesScr
 
 
 var GLOBAl_CRITERIA_LT = setFor3LinguisticTerm
-var GLOBAl_ALTERNATIVE_LT = setFor3LinguisticTerm
+var GLOBAl_ALTERNATIVE_LT = setFor3AlternativeTerm
 
 var GLOBAL_COUNT_EV_CRITERIA=3
 var GLOBAL_COUNT_EV_ALTERNATIVE=3
@@ -58,9 +55,13 @@ var SELECTED_EXPERT_INDEX=0
 
 var GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
 var GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT = mutableListOf<LinguisticTermCell>()
-var GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
-var GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
+var GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
+var GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE = mutableListOf< AlternativeAndCriteriaFuzzyNumbers>()
 
+var GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
+var GLOBAL_NORMALIZED_WEIGHTED_MATRIX = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
+
+var GLOBAL_RESULT = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
 
 @Composable
 @Preview
@@ -68,7 +69,7 @@ fun App() {
     
     //PresentScreenView()
     val prep = Screen.values().toList()
-    val screens = prep.dropLast(8)
+    val screens = prep.dropLast(11)
     val navController by rememberNavController(Screen.HomeScreen.name)
     val currentScreen by remember {
         navController.currentScreen
@@ -180,6 +181,14 @@ enum class Screen(
     OptimalCriteriaValuesScreen(
         label = "Criteria settings",
         icon = Icons.Filled.Done
+    ),
+    NormalizedMatrixScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
+    ),
+    NormalizedWeightedMatrixScreen(
+        label = "Criteria settings",
+        icon = Icons.Filled.Done
     )
 
 }
@@ -232,7 +241,12 @@ fun CustomNavigationHost(
         composable(Screen.OptimalCriteriaValuesScreen.name){
             OptimalCriteriaValuesScreen(navController)
         }
-
+        composable(Screen.NormalizedMatrixScreen.name){
+            NormalizedMatrixScreen(navController)
+        }
+        composable(Screen.NormalizedWeightedMatrixScreen.name){
+            NormalizedWeightedMatrixScreen(navController)
+        }
 
     }.build()
 }
