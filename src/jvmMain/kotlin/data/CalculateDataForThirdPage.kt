@@ -9,7 +9,7 @@ import GLOBAL_MATRIX_OF_ALTERNATIVES
 import GLOBAl_ALTERNATIVE_LT
 
 data class AggregateScore(
-    val altName: String,
+    var altName: String,
     var table: MutableMap<Int, Array<String>>
 )
 
@@ -20,7 +20,6 @@ fun getEmptyAggregationStore(): MutableList<AggregateScore> {
         val tempTable = mutableMapOf<Int, Array<String>>(1 to Array<String>(GLOBAL_COUNT_EXPERT) { "1" })
         for (c in 1..GLOBAL_COUNT_CRITERIA) {
             tempTable[c]=Array<String>(GLOBAL_COUNT_EXPERT) { "1" }
-            println("c=$c + ${tempTable[c]}")
 
         }
         result.add(AggregateScore(altName, tempTable))
@@ -34,12 +33,14 @@ fun getEmptyAggregationStore(): MutableList<AggregateScore> {
 
 fun getAggregateStore(){
 
-
     for(a in 1..GLOBAL_COUNT_ALTERNATIVE){
         for (gle in GLOBAL_EXPERTS_EVALUATION_LIST.indices){
             for(c in 1..GLOBAL_COUNT_CRITERIA){
                 val sr = GLOBAL_EXPERTS_EVALUATION_LIST[gle].table[a-1][c]!!
                 GLOBAL_AGGREGATE_SCORE[a-1].table[c]?.set(gle, getShortNameAlternativeLTByFullName(sr))
+                val altName = GLOBAL_MATRIX_OF_ALTERNATIVES[a - 1].name
+                GLOBAL_AGGREGATE_SCORE[a-1].altName=altName
+
 
             }
         }

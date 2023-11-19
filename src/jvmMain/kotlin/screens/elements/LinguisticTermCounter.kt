@@ -31,7 +31,7 @@ fun Counter(
 ) {
     Row(verticalAlignment = Alignment.CenterVertically){
         Text(
-            modifier = Modifier.width(70.dp),
+            modifier = Modifier.width(100.dp).padding(end = 5.dp),
             text = name,
             style = TextStyle(fontSize = 14.sp, textAlign = TextAlign.Center)
         )

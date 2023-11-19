@@ -375,7 +375,6 @@ fun PresentScreenView(
                     navController.navigate(Screen.ExpertsName.name)
                 }
             )
-            Text(text = rememberExpertsCount.toString())
         }
     }
 

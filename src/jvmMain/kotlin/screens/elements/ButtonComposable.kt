@@ -21,18 +21,18 @@ fun BasicButton(
     text: String,
     modifier: Modifier = Modifier
         .padding(12.dp)
-        .padding(3.dp),
+        .padding(1.dp),
     enabled: Boolean = true,
     action:() -> Unit)
 {
     Button(
         onClick = action,
         modifier = modifier,
-        border = BorderStroke(1.5.dp,Color.Black),
+        border = BorderStroke(1.dp,Color.Black),
         enabled= enabled,
         colors =
             ButtonDefaults.buttonColors(
-                backgroundColor = Color(red=102, green=248, blue=255),
+                backgroundColor = Color.White,
                 contentColor = Color.Black,
             )
     ) {

@@ -30,9 +30,9 @@ fun AlternativeCountView(
         color = Color.Transparent
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Text("Альтернативи", fontSize = 20.sp)
+            Text("Alternatives", fontSize = 20.sp)
             Spacer(modifier = Modifier.height(5.dp))
-            Counter("Кількість: ", alternativeCount,
+            Counter("Quantity: ", alternativeCount,
                 onAddCounterValue = onAddCounterAlternativeValue,
                 onRemoveCounterValue = onRemoveCounterAlternativeValue
             )

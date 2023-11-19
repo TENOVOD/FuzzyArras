@@ -30,9 +30,9 @@ fun CriteriaCountView(
         color = Color.Transparent
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Text("Критерії", fontSize = 20.sp)
+            Text("Criteria", fontSize = 20.sp)
             Spacer(modifier = Modifier.height(5.dp))
-            Counter("Кількість: ", criteriaCount,
+            Counter("Quantity: ", criteriaCount,
                 onAddCounterValue = onAddCounterCriteriaValue,
                 onRemoveCounterValue = onRemoveCounterCriteriaValue
             )

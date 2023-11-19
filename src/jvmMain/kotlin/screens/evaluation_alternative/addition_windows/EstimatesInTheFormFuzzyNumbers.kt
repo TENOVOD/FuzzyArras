@@ -94,6 +94,7 @@ fun EstimatesInTheFormOfFuzzyNumber(
                             val mValue = multMiddleValue.pow((1 / 3f))
                             val ushtValue = multMaxValue.pow((1 / 3f))
                             val uValue = arrOfMaxValues.max()
+                            println("Print alt name: ${it.altName}")
                             GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS.add(it.altName to  AlternativeAndCriteriaFuzzyNumbers(
                                 GLOBAL_MATRIX_OF_CRITERIA[c-1].name,
                                 lValue,

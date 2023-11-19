@@ -29,7 +29,7 @@ fun AlternativesName(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
-            modifier = Modifier.fillMaxSize().padding(start = 100.dp)
+            modifier = Modifier.padding(start = 100.dp)
         ){
             Surface(
                 shape = RoundedCornerShape(size = 5.dp),
@@ -43,8 +43,7 @@ fun AlternativesName(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally){
                     Row {
-                        HeaderCell("Criteria name")
-                        HeaderCell("Optimal value")
+                        HeaderCell("Alternatives name")
                     }
                     GLOBAL_MATRIX_OF_ALTERNATIVES.forEach { el->
 

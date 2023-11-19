@@ -1,10 +1,7 @@
 package screens.presets_screen.parts.сount_LT
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -25,21 +22,20 @@ fun CountLT(
     onRemoveCounterAlternativeValue: (Int) -> Unit
 ) {
     Surface(
-
         shape = RoundedCornerShape(size = 5.dp),
         border = BorderStroke(1.dp, Color.Gray),
         modifier = Modifier.padding(15.dp),
         color = Color.Transparent
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Text("Кількість ЛТ", fontSize = 20.sp)
+            Text("Quantity LT", fontSize = 20.sp, modifier = Modifier.padding(end = 5.dp))
             Spacer(modifier = Modifier.height(5.dp))
-            Counter("для оцінки критеріїв", criteriaEvaluation,
+            Counter("to evaluate the criteria", criteriaEvaluation,
                 onAddCounterValue = onAddCounterCriteriaValue,
                 onRemoveCounterValue = onRemoveCounterCriteriaValue
             )
             Spacer(modifier = Modifier.height(5.dp))
-            Counter("для оцінки альтернатив", alternativeEvaluation,
+            Counter("to evaluate alternatives", alternativeEvaluation,
                 onAddCounterValue = onAddCounterAlternativeValue,
                 onRemoveCounterValue = onRemoveCounterAlternativeValue
             )

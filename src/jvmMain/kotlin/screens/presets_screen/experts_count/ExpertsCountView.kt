@@ -30,9 +30,9 @@ fun ExpertsCountView(
         color = Color.Transparent
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Text("Експерти", fontSize = 20.sp)
+            Text("Experts", fontSize = 20.sp)
             Spacer(modifier = Modifier.height(5.dp))
-            Counter("Кількість: ", expertsCount,
+            Counter("Quantity: ", expertsCount,
                 onAddCounterValue = onAddCounterExpertValue,
                 onRemoveCounterValue = onRemoveCounterExpertValue
             )
