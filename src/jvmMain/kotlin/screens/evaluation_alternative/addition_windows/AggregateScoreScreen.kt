@@ -3,6 +3,7 @@ package screens.evaluation_alternative.addition_windows
 import GLOBAL_AGGREGATE_SCORE
 import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EXPERT
+import GLOBAL_MATRIX_OF_CRITERIA
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,7 +39,7 @@ fun AggregateScoreScreen(
                     Row(){
                         HeaderCell("")
                         for(i in 1..GLOBAL_COUNT_CRITERIA){
-                            HeaderCell("Crt #$i")
+                            HeaderCell(GLOBAL_MATRIX_OF_CRITERIA[i-1].name)
                         }
                     }
 
