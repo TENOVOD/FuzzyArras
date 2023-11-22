@@ -17,8 +17,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.style.TextAlign
@@ -45,8 +47,16 @@ fun RowScope.HeaderCell(
             .width(100.dp)
             .height(60.dp),
         textAlign = TextAlign.Center,
-        fontSize = 16.sp,
-        fontWeight = FontWeight(600)
+        style = TextStyle(
+            fontSize = 18.sp,
+            fontFamily = FontFamily(
+                Font(
+                    resource = "Ermilov.otf",
+                    style = FontStyle.Normal,
+                    weight = FontWeight.W100
+                )
+            )
+        )
 
     )
 }
@@ -62,10 +72,19 @@ fun RowScope.LeftSideMainCell(
             .weight(0.9f)
             .padding(2.dp)
             .width(100.dp)
-            .height(30.dp),
+            .height(60.dp),
         textAlign = TextAlign.Center,
-        fontSize = 16.sp,
-        fontWeight = FontWeight(600)
+        style = TextStyle(
+            textAlign = TextAlign.Center,
+            fontSize = 16.sp,
+            fontFamily = FontFamily(
+                Font(
+                    resource = "Ermilov.otf",
+                    style = FontStyle.Normal,
+                    weight = FontWeight.W500
+                )
+            )
+        )
 
     )
 }
@@ -85,12 +104,20 @@ fun RowScope.TableCell(
             .weight(0.9f)
             .padding(2.dp)
             .width(100.dp)
-            .height(30.dp),
+            .height(60.dp),
         textStyle = TextStyle(
             textAlign = TextAlign.Center,
-            color = Color.Black,
-            fontSize = 16.sp
+            fontSize = 16.sp,
+            fontFamily = FontFamily(
+                Font(
+                    resource = "Ermilov.otf",
+                    style = FontStyle.Normal,
+                    weight = FontWeight.W500
+                )
+            )
         ),
+        cursorBrush=SolidColor(Color(255, 153, 255))
+
 
 
         )
@@ -108,8 +135,17 @@ fun RowScope.TableCellWithText(
             .padding(2.dp)
             .width(110.dp)
             .height(30.dp),
-        textAlign = TextAlign.Center,
-        fontSize = 12.sp
+        style = TextStyle(
+            textAlign = TextAlign.Center,
+            fontSize = 18.sp,
+            fontFamily = FontFamily(
+                Font(
+                    resource = "Ermilov.otf",
+                    style = FontStyle.Normal,
+                    weight = FontWeight.W100
+                )
+            )
+        )
     )
 }
 
@@ -126,14 +162,25 @@ fun RowScope.DropdownDemo(
             items[selectedIndex],
             modifier = Modifier.border(1.dp, Color.Black).width(250.dp).height(34.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = { expanded = true }).background(
-                Color.White
+                Color.Transparent
+            ),
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+                fontSize = 16.sp,
+                fontFamily = FontFamily(
+                    Font(
+                        resource = "Ermilov.otf",
+                        style = FontStyle.Normal,
+                        weight = FontWeight.W100
+                    )
+                )
             )
         )
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
             modifier = Modifier.width(250.dp).background(
-                Color.LightGray
+                Color(255, 164, 255)
             )
         ) {
             items.forEachIndexed { index, s ->
@@ -178,8 +225,19 @@ fun RowScope.DropdownEvaluationCriteria(
             items[selectedIndex],
             modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = { expanded = true }).background(
-                    Color.White
+                    Color.Transparent
+                ),
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+                fontSize = 16.sp,
+                fontFamily = FontFamily(
+                    Font(
+                        resource = "Ermilov.otf",
+                        style = FontStyle.Normal,
+                        weight = FontWeight.W100
+                    )
                 )
+            )
         )
         DropdownMenu(
             expanded = expanded,
@@ -223,8 +281,19 @@ fun RowScope.DropdownChooseExpert(
             items[selectedIndex],
             modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = onExpandedTrue).background(
-                    Color.White
+                    Color.Transparent
+                ),
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+                fontSize = 16.sp,
+                fontFamily = FontFamily(
+                    Font(
+                        resource = "Ermilov.otf",
+                        style = FontStyle.Normal,
+                        weight = FontWeight.W100
+                    )
                 )
+            )
         )
         DropdownMenu(
             expanded = expanded,
@@ -274,8 +343,19 @@ fun RowScope.DropdownAlternativeEvaluation(
             items[selectedIndex],
             modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = { expanded = true }).background(
-                    Color.White
+                    Color.Transparent
+                ),
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+                fontSize = 16.sp,
+                fontFamily = FontFamily(
+                    Font(
+                        resource = "Ermilov.otf",
+                        style = FontStyle.Normal,
+                        weight = FontWeight.W100
+                    )
                 )
+            )
         )
         DropdownMenu(
             expanded = expanded,

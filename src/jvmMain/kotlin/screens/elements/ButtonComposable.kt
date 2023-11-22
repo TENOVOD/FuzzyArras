@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.platform.Font
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -32,11 +33,22 @@ fun BasicButton(
         enabled= enabled,
         colors =
             ButtonDefaults.buttonColors(
-                backgroundColor = Color.White,
+                backgroundColor = Color(255,153,255),
                 contentColor = Color.Black,
             )
     ) {
-        Text(text = text,fontSize = 16.sp,
+        Text(text = text,
+            style = TextStyle(
+            textAlign = TextAlign.Center,
+            fontSize = 18.sp,
+            fontFamily = FontFamily(
+                Font(
+                    resource = "Ermilov.otf",
+                    style = FontStyle.Normal,
+                    weight = FontWeight.W100
+                )
+            )
+        )
 
         )
     }

@@ -1,15 +1,26 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.loadImageBitmap
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.platform.Font
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import data.*
@@ -28,45 +39,47 @@ import screens.presets_screen.PresentScreenView
 import screens.presets_screen.alternatives_names.AlternativesName
 import screens.presets_screen.expert_count.ExpertsName
 import screens.presets_screen.settings_of_alternatives.SettingsOfAlternativesScreen
+import java.io.File
 
 
-var GLOBAl_CRITERIA_LT = setFor3LinguisticTerm
-var GLOBAl_ALTERNATIVE_LT = setFor3AlternativeTerm
+var GLOBAl_CRITERIA_LT = setFor7LinguisticTerm
+var GLOBAl_ALTERNATIVE_LT = setFor7AlternativeTerm
 
-var GLOBAL_COUNT_EV_CRITERIA=3
-var GLOBAL_COUNT_EV_ALTERNATIVE=3
+var GLOBAL_COUNT_EV_CRITERIA = 7
+var GLOBAL_COUNT_EV_ALTERNATIVE = 7
 
 var GLOBAL_COUNT_CRITERIA = 2
 var GLOBAL_COUNT_ALTERNATIVE = 2
 var GLOBAL_COUNT_EXPERT = 1
 
-var GLOBAL_MATRIX_OF_CRITERIA= defaultListFor2Criteria
-var GLOBAL_MATRIX_OF_ALTERNATIVES= setFor2Alternatives
-var GLOBAL_MATRIX_OF_EXPERTS= setForExpert
+var GLOBAL_MATRIX_OF_CRITERIA = defaultListFor2Criteria
+var GLOBAL_MATRIX_OF_ALTERNATIVES = setFor2Alternatives
+var GLOBAL_MATRIX_OF_EXPERTS = setForExpert
 
 //SECOND PAGE (EVALUATION CRITERIA)
-var GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
+var GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA, GLOBAL_COUNT_EXPERT)
 var GLOBAL_NORMALIZE_OF_CRITERIA_LT = mutableListOf<LinguisticTermCell>()
 var GLOBAL_CRITERIA_FUZZY_NUMBERS = getEmptyCriteriaFuzzyNumbers()
 
 //THIRD SCREEN (EVALUATION ALTERNATIVE)
 var GLOBAL_EXPERTS_EVALUATION_LIST = setEmptyListExpertsEvaluation()
-var SELECTED_EXPERT_INDEX=0
+var SELECTED_EXPERT_INDEX = 0
 
-var GLOBAL_AGGREGATE_SCORE =getEmptyAggregationStore()
+var GLOBAL_AGGREGATE_SCORE = getEmptyAggregationStore()
 var GLOBAL_NORMALIZE_OF_ALTERNATIVE_LT = mutableListOf<LinguisticTermCell>()
-var GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
-var GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE = mutableListOf< AlternativeAndCriteriaFuzzyNumbers>()
+var GLOBAL_ALL_ALTERNATIVE_FUZZY_NUMBERS = mutableListOf<Pair<String, AlternativeAndCriteriaFuzzyNumbers>>()
+var GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE = mutableListOf<AlternativeAndCriteriaFuzzyNumbers>()
 
-var GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
-var GLOBAL_NORMALIZED_WEIGHTED_MATRIX = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
+var GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX = mutableListOf<Pair<String, AlternativeAndCriteriaFuzzyNumbers>>()
+var GLOBAL_NORMALIZED_WEIGHTED_MATRIX = mutableListOf<Pair<String, AlternativeAndCriteriaFuzzyNumbers>>()
 
-var GLOBAL_RESULT = mutableListOf<Pair<String,AlternativeAndCriteriaFuzzyNumbers>>()
-var GLOBAL_S_VAlUES = mutableListOf<Pair<String,Array<Float>>>()
+var GLOBAL_RESULT = mutableListOf<Pair<String, AlternativeAndCriteriaFuzzyNumbers>>()
+var GLOBAL_S_VAlUES = mutableListOf<Pair<String, Array<Float>>>()
+
 @Composable
 @Preview
 fun App() {
-    
+
     //PresentScreenView()
     val prep = Screen.values().toList()
     val screens = prep.dropLast(11)
@@ -77,13 +90,24 @@ fun App() {
 
     MaterialTheme {
         Surface(
-            modifier = Modifier.background(color = MaterialTheme.colors.background)
+            modifier = Modifier.background(color = Color(255, 153, 255))
         ) {
+            val file =
+                File("D:\\TEST desktop Composable\\LAB2\\FuzzyAras\\FuzzyAras\\src\\jvmMain\\resources\\pow2.jpg")
+            val imageBitmap: ImageBitmap = remember(file) {
+                loadImageBitmap(file.inputStream())
+            }
+            Image(
+                modifier = Modifier.fillMaxSize(),
+                painter = BitmapPainter(image = imageBitmap),
+                contentDescription = null,
+                alpha = 0.3F
+            )
             Box(
                 modifier = Modifier.fillMaxSize()
             ) {
                 NavigationRail(
-                    modifier = Modifier.align(Alignment.CenterStart).fillMaxHeight()
+                    modifier = Modifier.background(color = Color(255, 153, 255)).align(Alignment.CenterStart).fillMaxHeight()
                 ) {
                     screens.forEach {
                         NavigationRailItem(
@@ -91,11 +115,25 @@ fun App() {
                             icon = {
                                 Icon(
                                     imageVector = it.icon,
-                                    contentDescription = it.label
+                                    contentDescription = it.label,
+                                    tint = Color.Black,
                                 )
                             },
                             label = {
-                                Text(it.label)
+                                Text(
+                                    it.label, style = TextStyle(
+                                        textAlign = TextAlign.Center,
+                                        fontSize = 16.sp,
+                                        fontFamily = FontFamily(
+                                            Font(
+                                                resource = "Ermilov.otf",
+                                                style = FontStyle.Normal,
+                                                weight = FontWeight.W100
+                                            )
+                                        ),
+                                        color = Color.Black
+                                    )
+                                )
                             },
                             alwaysShowLabel = false,
                             onClick = {
@@ -211,40 +249,40 @@ fun CustomNavigationHost(
             ResultScreen(navController)
         }
 
-        composable(Screen.CriteriaSettings.name){
+        composable(Screen.CriteriaSettings.name) {
             SettingsOfAlternativesScreen(navController)
         }
-        composable(Screen.AlternativesName.name){
+        composable(Screen.AlternativesName.name) {
             AlternativesName(navController)
         }
-        composable(Screen.ExpertsName.name){
+        composable(Screen.ExpertsName.name) {
             ExpertsName(navController)
         }
-        composable(Screen.FuzzyTriangularNumbers.name){
+        composable(Screen.FuzzyTriangularNumbers.name) {
             CriteriaEvalFuzzyTriangularNumbersScreen(navController)
         }
-        composable(Screen.EstimatesFormOfFuzzyNumbersTransformedLTScreen.name){
+        composable(Screen.EstimatesFormOfFuzzyNumbersTransformedLTScreen.name) {
             EstimatesFormOfFuzzyNumbersTransformedLTScreen(navController)
         }
-        composable(Screen.EvaluationAlternative.name){
+        composable(Screen.EvaluationAlternative.name) {
             EvaluationAlternativeScreen(navController)
         }
-        composable(Screen.AggregateScoreScreen.name){
+        composable(Screen.AggregateScoreScreen.name) {
             AggregateScoreScreen(navController)
         }
-        composable(Screen.EstimatesInTheFormOfFuzzyTriangularNumbersScreen.name){
+        composable(Screen.EstimatesInTheFormOfFuzzyTriangularNumbersScreen.name) {
             EstimatesInTheFormOfFuzzyTriangularNumbersScreen(navController)
         }
-        composable(Screen.EstimatesInTheFormOfFuzzyNumberScreen.name){
+        composable(Screen.EstimatesInTheFormOfFuzzyNumberScreen.name) {
             EstimatesInTheFormOfFuzzyNumber(navController)
         }
-        composable(Screen.OptimalCriteriaValuesScreen.name){
+        composable(Screen.OptimalCriteriaValuesScreen.name) {
             OptimalCriteriaValuesScreen(navController)
         }
-        composable(Screen.NormalizedMatrixScreen.name){
+        composable(Screen.NormalizedMatrixScreen.name) {
             NormalizedMatrixScreen(navController)
         }
-        composable(Screen.NormalizedWeightedMatrixScreen.name){
+        composable(Screen.NormalizedWeightedMatrixScreen.name) {
             NormalizedWeightedMatrixScreen(navController)
         }
 

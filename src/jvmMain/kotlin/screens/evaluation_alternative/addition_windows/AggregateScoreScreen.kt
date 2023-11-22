@@ -5,15 +5,25 @@ import GLOBAL_COUNT_CRITERIA
 import GLOBAL_COUNT_EXPERT
 import GLOBAL_MATRIX_OF_CRITERIA
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.unit.dp
 import navcontroller.NavController
 import screens.elements.*
+import java.io.File
+
+
 
 @Composable
 fun AggregateScoreScreen(
@@ -36,6 +46,7 @@ fun AggregateScoreScreen(
                 Column (
                     modifier = Modifier.padding(10.dp)
                 ){
+
                     Row(){
                         HeaderCell("")
                         for(i in 1..GLOBAL_COUNT_CRITERIA){

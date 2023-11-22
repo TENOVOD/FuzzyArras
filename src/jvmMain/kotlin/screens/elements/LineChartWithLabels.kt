@@ -14,8 +14,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.platform.Font
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun LineChartWithLabels(
@@ -34,13 +40,24 @@ fun LineChartWithLabels(
     Row {
         Column(
             Modifier
-                .height(120.dp),
+                .height(190.dp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End
         ) {
             yLabels.forEach { cell ->
                 Row {
-                    Text(cell, fontWeight = FontWeight(500))
+                    Text(cell, style = TextStyle(
+                            textAlign = TextAlign.Center,
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily(
+                            Font(
+                                resource = "Ermilov.otf",
+                                style = FontStyle.Normal,
+                                weight = FontWeight.W100
+                            )
+                        )
+                    )
+                    )
                 }
 
             }
@@ -52,8 +69,8 @@ fun LineChartWithLabels(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
-                    .background(Color.White)
+                    .height(190.dp)
+
             ) {
                 for (term in dataPoints) {
 
@@ -95,7 +112,7 @@ fun LineChartWithLabels(
                         for (i in yLabels.indices) {
                             val labelY = size.height * (1f - i.toFloat() / (yLabels.size - 1))
                             drawLine(
-                                color = Color.White,
+                                color = Color.Transparent,
                                 start = Offset(0f, labelY),
                                 end = Offset(size.width, labelY),
                                 strokeWidth = 1f
@@ -112,7 +129,17 @@ fun LineChartWithLabels(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 for (label in xLabels) {
-                    Text(label, fontWeight = FontWeight(500))
+                    Text(label, style = TextStyle(
+                        textAlign = TextAlign.Center,
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily(
+                            Font(
+                                resource = "Ermilov.otf",
+                                style = FontStyle.Normal,
+                                weight = FontWeight.W100
+                            )
+                        )
+                    ))
                 }
             }
         }
