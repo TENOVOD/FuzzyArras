@@ -7,14 +7,12 @@ import GLOBAL_COUNT_CRITERIA
 import GLOBAL_MATRIX_OF_ALTERNATIVES
 import GLOBAL_MATRIX_OF_CRITERIA
 import GLOBAL_NORMALIZED_ALTERNATIVE_MATRIX
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -35,7 +33,7 @@ fun NormalizedMatrixScreen(
 
 
     ) {
-        Column {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Surface(
                 shape = RoundedCornerShape(size = 5.dp),
                 border = BorderStroke(1.dp, Color.Gray),
@@ -44,6 +42,7 @@ fun NormalizedMatrixScreen(
                     .width(1750.dp)
                     .height(800.dp)
                     .fillMaxHeight(0.5f)
+                    .background(Color(255, 153, 255).copy(alpha = 0.3f))
                     .verticalScroll(rememberScrollState()),
 
                 color = Color.Transparent,
@@ -65,7 +64,7 @@ fun NormalizedMatrixScreen(
                             if (it.first == GLOBAL_MATRIX_OF_CRITERIA[i].name) {
                                 Row {
                                     if (index == 0) {
-                                        LeftSideMainCell("Optimal alternative")
+                                        LeftSideMainCell("Оптимальна альтернатива")
                                         TableCellWithText(it.second.lValue.toString())
                                         TableCellWithText(it.second.lshtValue.toString())
                                         TableCellWithText(it.second.mValue.toString())
@@ -97,7 +96,7 @@ fun NormalizedMatrixScreen(
             Spacer(modifier = Modifier.height(20.dp))
             calculateNormalizeMatrix()
             Row {
-                BasicButton("GO TO PREVIOUS PAGE") {
+                BasicButton("До оцінки альтернатив", modifier = Modifier.padding(12.dp).padding(1.dp).height(50.dp)) {
                     navController.navigate(Screen.EvaluationAlternative.name)
                 }
             }

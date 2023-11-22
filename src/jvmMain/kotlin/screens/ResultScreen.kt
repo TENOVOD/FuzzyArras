@@ -3,6 +3,7 @@ package screens
 import GLOBAL_RESULT
 import GLOBAL_S_VAlUES
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
@@ -35,7 +36,8 @@ fun ResultScreen(
                     .padding(15.dp)
                     .width(1750.dp)
                     .height(800.dp)
-                    .fillMaxHeight(0.5f),
+                    .fillMaxHeight(0.5f)
+                    .background(Color(255, 153, 255).copy(alpha = 0.3f)),
                 color = Color.Transparent,
 
                 ) {
@@ -44,31 +46,30 @@ fun ResultScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
 
                 ) {
-                    Text("RESULT", fontSize = 25.sp)
                     Spacer(modifier = Modifier.height(30.dp))
-                    Row {
-                        HeaderCell("Name")
-                        HeaderCell("l")
-                        HeaderCell("l'")
-                        HeaderCell("m")
-                        HeaderCell("u'")
-                        HeaderCell("u")
-                    }
-                    GLOBAL_RESULT.forEach {
-                        Row{
-                            LeftSideMainCell(it.first)
-                            TableCellWithText(it.second.lValue.toString())
-                            TableCellWithText(it.second.lshtValue.toString())
-                            TableCellWithText(it.second.mValue.toString())
-                            TableCellWithText(it.second.ushtValue.toString())
-                            TableCellWithText(it.second.uValue.toString())
-                        }
-                    }
+//                    Row {
+//                        HeaderCell("Name")
+//                        HeaderCell("l")
+//                        HeaderCell("l'")
+//                        HeaderCell("m")
+//                        HeaderCell("u'")
+//                        HeaderCell("u")
+//                    }
+//                    GLOBAL_RESULT.forEach {
+//                        Row{
+//                            LeftSideMainCell(it.first)
+//                            TableCellWithText(it.second.lValue.toString())
+//                            TableCellWithText(it.second.lshtValue.toString())
+//                            TableCellWithText(it.second.mValue.toString())
+//                            TableCellWithText(it.second.ushtValue.toString())
+//                            TableCellWithText(it.second.uValue.toString())
+//                        }
+//                    }
                     Spacer(modifier = Modifier.height(30.dp))
                     Row{
-                        HeaderCell("Name")
-                        HeaderCell("Defuzzification")
-                        HeaderCell("Degree of Utility")
+                        HeaderCell("")
+                        HeaderCell("Чіткі оцінки оптимальності")
+                        HeaderCell("Ступені оптимальності")
                     }
                     GLOBAL_S_VAlUES.forEach {
                         Row{

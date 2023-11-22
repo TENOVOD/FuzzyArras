@@ -38,47 +38,7 @@ fun SettingsOfAlternativesScreen(
         Box(
             modifier = Modifier.fillMaxSize().padding(start = 100.dp)
         ){
-            Surface(
-                shape = RoundedCornerShape(size = 5.dp),
-                border = BorderStroke(1.dp, Color.Gray),
-                modifier = Modifier
-                    .padding(15.dp)
-                    .width(500.dp)
-                    .fillMaxHeight(0.5f)
-                ,
-                color = Color.Transparent,
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally){
-                    Row {
-                        HeaderCell("Criteria name")
-                        HeaderCell("Optimal value")
-                    }
-                    GLOBAL_MATRIX_OF_CRITERIA.forEach { el->
 
-                        Row(modifier = Modifier
-                            .width(500.dp)
-                        ){
-                            var criterionName by remember { mutableStateOf(el.name)}
-                            TableCell(criterionName){
-                                criterionName=it
-                                changeAllGlobalCriteriaNameById(el.id,criterionName)
-                            }
-                            DropdownDemo(el)
-                        }
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Button(
-                        onClick = {
-                            println(GLOBAL_MATRIX_OF_CRITERIA)
-                            GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
-                            navController.navigate(Screen.HomeScreen.name)
-                        }) {
-                        Text("SAVE AND GO TO MAIN PAGE")
-                    }
-
-                }
-
-            }
         }
     }
 }

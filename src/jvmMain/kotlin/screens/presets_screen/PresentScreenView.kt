@@ -329,7 +329,7 @@ fun PresentScreenView(
                     }
                 },
                 onExpertsButton = {
-                    navController.navigate(Screen.ExpertsName.name)
+                    navController.navigate(Screen.AlternativesName.name)
                 }
             )
             //Alternative counter +-
@@ -387,7 +387,7 @@ fun PresentScreenView(
                     }
                 },
                 onCriteriaButtonAction = {
-                    navController.navigate(Screen.CriteriaSettings.name)
+                    navController.navigate(Screen.AlternativesName.name)
                 }
             )
 

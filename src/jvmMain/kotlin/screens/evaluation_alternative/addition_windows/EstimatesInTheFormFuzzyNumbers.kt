@@ -11,6 +11,7 @@ import GLOBAL_NORMALIZE_OF_CRITERIA_LT
 import GLOBAl_ALTERNATIVE_LT
 import GLOBAl_CRITERIA_LT
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -37,7 +39,7 @@ fun EstimatesInTheFormOfFuzzyNumber(
     Box(
         modifier = Modifier.fillMaxSize().padding(start = 100.dp)
     ) {
-        Column {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Surface(
                 shape = RoundedCornerShape(size = 5.dp),
                 border = BorderStroke(1.dp, Color.Gray),
@@ -46,6 +48,7 @@ fun EstimatesInTheFormOfFuzzyNumber(
                     .width(1750.dp)
                     .height(800.dp)
                     .fillMaxHeight(0.5f)
+                    .background(Color(255, 153, 255).copy(alpha = 0.3f))
                     .verticalScroll(rememberScrollState()),
                 color = Color.Transparent,
             ) {
@@ -124,7 +127,7 @@ fun EstimatesInTheFormOfFuzzyNumber(
             }
             Spacer(modifier = Modifier.height(20.dp))
             Row {
-                BasicButton("GO TO PREVIOUS PAGE") {
+                BasicButton("До оцінки альтернатив", modifier = Modifier.padding(12.dp).padding(1.dp).height(50.dp)) {
                     navController.navigate(Screen.EvaluationAlternative.name)
                 }
             }

@@ -29,45 +29,7 @@ fun ExpertsName(
         Box(
             modifier = Modifier.fillMaxSize().padding(start = 100.dp)
         ){
-            Surface(
-                shape = RoundedCornerShape(size = 5.dp),
-                border = BorderStroke(1.dp, Color.Gray),
-                modifier = Modifier
-                    .padding(15.dp)
-                    .width(250.dp)
-                    .fillMaxHeight(0.5f)
-                ,
-                color = Color.Transparent,
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally){
-                    Row {
-                        HeaderCell("Criteria name")
-                        HeaderCell("Optimal value")
-                    }
-                    GLOBAL_MATRIX_OF_EXPERTS.forEach { el->
 
-                        Row(modifier = Modifier
-                            .width(500.dp)
-                        ){
-                            var alternativeName by remember { mutableStateOf(el.name) }
-                            TableCell(alternativeName){
-                                alternativeName=it
-                                changeAllGlobalExpertsNameById(el.id,alternativeName)
-                            }
-                        }
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Button(
-                        onClick = {
-                            println(GLOBAL_MATRIX_OF_EXPERTS)
-                            navController.navigate(Screen.HomeScreen.name)
-                        }) {
-                        Text("Go to main page")
-                    }
-
-                }
-
-            }
         }
     }
 }

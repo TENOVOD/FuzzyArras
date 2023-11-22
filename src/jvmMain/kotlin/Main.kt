@@ -135,7 +135,7 @@ fun App() {
                                     )
                                 )
                             },
-                            alwaysShowLabel = false,
+                            alwaysShowLabel = true,
                             onClick = {
                                 navController.navigate(it.name)
                             }
@@ -173,11 +173,11 @@ enum class Screen(
         icon = Icons.Filled.Settings
     ),
     EvaluationCriteria(
-        label = "Ev.Crit.",
+        label = "Criteria",
         icon = Icons.Filled.AddCircle
     ),
     EvaluationAlternative(
-        label = "Ev.Altern.",
+        label = "Alter.",
         icon = Icons.Filled.AddCircle
     ),
     ResultScreen(

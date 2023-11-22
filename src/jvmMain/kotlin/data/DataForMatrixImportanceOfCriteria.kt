@@ -4,73 +4,73 @@ import models.AlternativeAndCriteriaCell
 import models.LinguisticTermCell
 
 val setFor3LinguisticTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Low","L","0","0","50"),
-    LinguisticTermCell("Medium","M","0","50","100"),
-    LinguisticTermCell("High","H","50","100","100"),
+    LinguisticTermCell("Низький","Н","0","0","50"),
+    LinguisticTermCell("Середній","С","0","50","100"),
+    LinguisticTermCell("Високий","В","50","100","100"),
 )
 val setFor4LinguisticTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Very low","VL","0","0","33"),
-    LinguisticTermCell("Low","L","0","33","66"),
-    LinguisticTermCell("Medium","M","33","66","100"),
-    LinguisticTermCell("High","H","66","100","100"),
+    LinguisticTermCell("Дуже низький","ДН","0","0","33"),
+    LinguisticTermCell("Низький","Н","0","33","66"),
+    LinguisticTermCell("Середній","С","33","66","100"),
+    LinguisticTermCell("Високий","В","66","100","100"),
 )
 val setFor5LinguisticTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Low","L","0","0","25"),
-    LinguisticTermCell("Medium low","ML","0","25","50"),
-    LinguisticTermCell("Medium","M","25","50","75"),
-    LinguisticTermCell("Medium high","MH","50","75","100"),
-    LinguisticTermCell("High","H","75","100","100"),
+    LinguisticTermCell("Низький","Н","0","0","25"),
+    LinguisticTermCell("Середньо-низький ","СН","0","25","50"),
+    LinguisticTermCell("Середній","С","25","50","75"),
+    LinguisticTermCell("Середньо-високий","СВ","50","75","100"),
+    LinguisticTermCell("Високий","В","75","100","100"),
 )
 val setFor6LinguisticTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Very low","VL","0","0","20"),
-    LinguisticTermCell("Low","L","0","20","40"),
-    LinguisticTermCell("Medium low","ML","20","40","60"),
-    LinguisticTermCell("Medium","M","40","60","80"),
-    LinguisticTermCell("Medium high","MH","60","80","100"),
-    LinguisticTermCell("High","H","80","100","100"),
+    LinguisticTermCell("Дуже низький","ДН","0","0","20"),
+    LinguisticTermCell("Низький","Н","0","20","40"),
+    LinguisticTermCell("Середньо-низький","СН","20","40","60"),
+    LinguisticTermCell("Середній","С","40","60","80"),
+    LinguisticTermCell("Середньо-високий","СВ","60","80","100"),
+    LinguisticTermCell("Високий","В","80","100","100"),
 )
 val setFor7LinguisticTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Very low","VL","0","0","10"),
-    LinguisticTermCell("Low","L","0","10","30"),
-    LinguisticTermCell("Medium low","ML","10","30","50"),
-    LinguisticTermCell("Medium","M","30","50","70"),
-    LinguisticTermCell("Medium high","MH","50","70","90"),
-    LinguisticTermCell("High","H","70","70","100"),
-    LinguisticTermCell("Very high","VH","90","100","100"),
+    LinguisticTermCell("Дуже низький","ДН","0","0","10"),
+    LinguisticTermCell("Низький","Н","0","10","30"),
+    LinguisticTermCell("Середньо-низький","СН","10","30","50"),
+    LinguisticTermCell("Середній","С","30","50","70"),
+    LinguisticTermCell("Середньо-високий","СВ","50","70","90"),
+    LinguisticTermCell("Високий","В","70","70","100"),
+    LinguisticTermCell("Дуже високий","ДВ","90","100","100"),
 )
 
 val setFor3AlternativeTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Low","L","0","0","50"),
-    LinguisticTermCell("Medium","M","0","50","100"),
-    LinguisticTermCell("High","H","50","100","100"),
+    LinguisticTermCell("Низький","Н","0","0","50"),
+    LinguisticTermCell("Середній","С","0","50","100"),
+    LinguisticTermCell("Високий","В","50","100","100"),
 )
 val setFor4AlternativeTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Very low","VL","0","0","33"),
-    LinguisticTermCell("Low","L","0","33","66"),
-    LinguisticTermCell("Medium","M","33","66","100"),
-    LinguisticTermCell("High","H","66","100","100"),
+    LinguisticTermCell("Дуже низький","ДН","0","0","33"),
+    LinguisticTermCell("Низький","Н","0","33","66"),
+    LinguisticTermCell("Середній","С","33","66","100"),
+    LinguisticTermCell("Високий","В","66","100","100"),
 )
 val setFor5AlternativeTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Low","L","0","0","25"),
-    LinguisticTermCell("Medium low","ML","0","25","50"),
-    LinguisticTermCell("Medium","M","25","50","75"),
-    LinguisticTermCell("Medium high","MH","50","75","100"),
-    LinguisticTermCell("High","H","75","100","100"),
+    LinguisticTermCell("Низький","Н","0","0","25"),
+    LinguisticTermCell("Середньо-низький ","СН","0","25","50"),
+    LinguisticTermCell("Середній","С","25","50","75"),
+    LinguisticTermCell("Середньо-високий","СВ","50","75","100"),
+    LinguisticTermCell("Високий","В","75","100","100"),
 )
 val setFor6AlternativeTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Very low","VL","0","0","20"),
-    LinguisticTermCell("Low","L","0","20","40"),
-    LinguisticTermCell("Medium low","ML","20","40","60"),
-    LinguisticTermCell("Medium","M","40","60","80"),
-    LinguisticTermCell("Medium high","MH","60","80","100"),
-    LinguisticTermCell("High","H","80","100","100"),
+    LinguisticTermCell("Дуже низький","ДН","0","0","20"),
+    LinguisticTermCell("Низький","Н","0","20","40"),
+    LinguisticTermCell("Середньо-низький","СН","20","40","60"),
+    LinguisticTermCell("Середній","С","40","60","80"),
+    LinguisticTermCell("Середньо-високий","СВ","60","80","100"),
+    LinguisticTermCell("Високий","В","80","100","100"),
 )
 val setFor7AlternativeTerm = mutableListOf<LinguisticTermCell>(
-    LinguisticTermCell("Very poor","VP","0","0","10"),
-    LinguisticTermCell("Poor","P","0","10","30"),
-    LinguisticTermCell("Medium poor","MP","10","30","50"),
-    LinguisticTermCell("Fair","F","30","50","70"),
-    LinguisticTermCell("Medium good","MG","50","70","90"),
-    LinguisticTermCell("Good","G","70","70","100"),
-    LinguisticTermCell("Very good","VG","90","100","100"),
+    LinguisticTermCell("Дуже низький","ДН","0","0","10"),
+    LinguisticTermCell("Низький","Н","0","10","30"),
+    LinguisticTermCell("Середньо-низький","СН","10","30","50"),
+    LinguisticTermCell("Середній","С","30","50","70"),
+    LinguisticTermCell("Середньо-високий","СВ","50","70","90"),
+    LinguisticTermCell("Високий","В","70","70","100"),
+    LinguisticTermCell("Дуже високий","ДВ","90","100","100"),
 )

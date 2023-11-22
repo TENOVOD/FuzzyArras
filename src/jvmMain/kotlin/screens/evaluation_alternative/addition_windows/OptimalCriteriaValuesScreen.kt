@@ -3,10 +3,12 @@ package screens.evaluation_alternative.addition_windows
 import GLOBAL_ALTERNATIVE_FUZZY_NUMBERS_BY_CRITERIA_TYPE
 import GLOBAl_CRITERIA_LT
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -21,7 +23,7 @@ fun OptimalCriteriaValuesScreen(
     Box(
         modifier = Modifier.fillMaxSize().padding(start = 100.dp)
     ) {
-        Column {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Surface(
                 shape = RoundedCornerShape(size = 5.dp),
                 border = BorderStroke(1.dp, Color.Gray),
@@ -29,7 +31,8 @@ fun OptimalCriteriaValuesScreen(
                     .padding(15.dp)
                     .width(1750.dp)
                     .height(800.dp)
-                    .fillMaxHeight(0.5f),
+                    .fillMaxHeight(0.5f)
+                    .background(Color(255, 153, 255).copy(alpha = 0.3f)),
                 color = Color.Transparent,
             ) {
                 Column (
@@ -60,7 +63,7 @@ fun OptimalCriteriaValuesScreen(
             Spacer(modifier = Modifier.height(30.dp))
             calculateNormalizeMatrix()
             Row {
-                BasicButton("GO TO PREVIOUS PAGE") {
+                BasicButton("До оцінки альтернатив", modifier = Modifier.padding(12.dp).padding(1.dp).height(50.dp)) {
                     navController.navigate(Screen.EvaluationAlternative.name)
                 }
             }

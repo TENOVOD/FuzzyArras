@@ -76,7 +76,7 @@ fun RowScope.LeftSideMainCell(
         textAlign = TextAlign.Center,
         style = TextStyle(
             textAlign = TextAlign.Center,
-            fontSize = 16.sp,
+            fontSize = 18.sp,
             fontFamily = FontFamily(
                 Font(
                     resource = "Ermilov.otf",
@@ -134,7 +134,7 @@ fun RowScope.TableCellWithText(
             .weight(0.9f)
             .padding(2.dp)
             .width(110.dp)
-            .height(30.dp),
+            .height(60.dp),
         style = TextStyle(
             textAlign = TextAlign.Center,
             fontSize = 18.sp,
@@ -160,7 +160,7 @@ fun RowScope.DropdownDemo(
     Column {
         Text(
             items[selectedIndex],
-            modifier = Modifier.border(1.dp, Color.Black).width(250.dp).height(34.dp).padding(start = 7.dp, top = 4.dp)
+            modifier = Modifier.border(1.dp, Color.Black).width(250.dp).height(64.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = { expanded = true }).background(
                 Color.Transparent
             ),
@@ -180,7 +180,7 @@ fun RowScope.DropdownDemo(
             expanded = expanded,
             onDismissRequest = { expanded = false },
             modifier = Modifier.width(250.dp).background(
-                Color(255, 164, 255)
+                Color(255, 164, 255).copy(alpha = 0.4f)
             )
         ) {
             items.forEachIndexed { index, s ->
@@ -193,7 +193,16 @@ fun RowScope.DropdownDemo(
                         changeGlobalCriteriaMatrix(criteria, TypeMinMax.MAX)
                     }
                 }) {
-                    Text(text = s)
+                    Text(text = s,style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(
+                            Font(
+                                resource = "Ermilov.otf",
+                                style = FontStyle.Normal,
+                                weight = FontWeight.Bold
+                            )
+                        )
+                    ))
                 }
             }
         }
@@ -220,10 +229,10 @@ fun RowScope.DropdownEvaluationCriteria(
         .weight(0.9f)
         .padding(2.dp)
         .width(100.dp)
-        .height(30.dp),) {
+        .height(60.dp),) {
         Text(
             items[selectedIndex],
-            modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
+            modifier = Modifier.fillMaxWidth().height(60.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = { expanded = true }).background(
                     Color.Transparent
                 ),
@@ -242,8 +251,8 @@ fun RowScope.DropdownEvaluationCriteria(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier.width(100.dp).background(
-                Color.LightGray
+            modifier = Modifier.width(200.dp).background(
+                Color(255, 164, 255).copy(alpha = 0.4f)
             )
         ) {
             items.forEachIndexed { index, s ->
@@ -253,7 +262,16 @@ fun RowScope.DropdownEvaluationCriteria(
                     updateMapEvaluation(key,criteria.name,list[selectedIndex])
                     println(GLOBAL_MATRIX_OF_CRITERIA_EVALUATION[0].values[1])
                 }) {
-                    Text(text = s)
+                    Text(text = s,style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(
+                            Font(
+                                resource = "Ermilov.otf",
+                                style = FontStyle.Normal,
+                                weight = FontWeight.Bold
+                            )
+                        )
+                    ))
                 }
             }
         }
@@ -276,10 +294,10 @@ fun RowScope.DropdownChooseExpert(
         .border(1.dp, Color.Black)
         .padding(2.dp)
         .width(100.dp)
-        .height(30.dp),) {
+        .height(60.dp),) {
         Text(
             items[selectedIndex],
-            modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
+            modifier = Modifier.fillMaxWidth().height(60.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = onExpandedTrue).background(
                     Color.Transparent
                 ),
@@ -298,15 +316,24 @@ fun RowScope.DropdownChooseExpert(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = onExpandedFalse,
-            modifier = Modifier.width(100.dp).background(
-                Color.LightGray
+            modifier = Modifier.width(200.dp).background(
+                Color(255, 164, 255).copy(alpha = 0.4f)
             )
         ) {
             items.forEachIndexed { index, s ->
                 DropdownMenuItem(onClick = {
                     changeValue(index)
                 }) {
-                    Text(text = s)
+                    Text(text = s,style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(
+                            Font(
+                                resource = "Ermilov.otf",
+                                style = FontStyle.Normal,
+                                weight = FontWeight.Bold
+                            )
+                        )
+                    ))
                 }
             }
         }
@@ -338,10 +365,10 @@ fun RowScope.DropdownAlternativeEvaluation(
         .weight(0.9f)
         .padding(2.dp)
         .width(100.dp)
-        .height(30.dp),){
+        .height(60.dp),){
         Text(
             items[selectedIndex],
-            modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 7.dp, top = 4.dp)
+            modifier = Modifier.fillMaxWidth().height(60.dp).padding(start = 7.dp, top = 4.dp)
                 .clickable(onClick = { expanded = true }).background(
                     Color.Transparent
                 ),
@@ -360,18 +387,32 @@ fun RowScope.DropdownAlternativeEvaluation(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier.width(100.dp).background(
-                Color.LightGray
+            modifier = Modifier.width(200.dp).background(
+                Color(255, 164, 255).copy(alpha = 0.4f)
             )
         ) {
             items.forEachIndexed { index, s ->
                 DropdownMenuItem(onClick = {
                     selectedIndex = index
                     expanded = false
+                    println("aIndex: $aIndex, cKey: $cKey, selectedIndex:$selectedIndex")
+                    println("items[selIndex]: ${items[selectedIndex]}")
+                    println("indexOfExpertEvaluationList: $indexOfExpertEvaluationList")
+                    println("GLOBAL_EXPERTS_EVALUATION_LIST[indexOfExpertEvaluationList]: ${GLOBAL_EXPERTS_EVALUATION_LIST[indexOfExpertEvaluationList]}")
+                    println("GLOBAL_EXPERTS_EVALUATION_LIST[indexOfExpertEvaluationList].table: ${GLOBAL_EXPERTS_EVALUATION_LIST[indexOfExpertEvaluationList].table[aIndex][cKey]}")
                     GLOBAL_EXPERTS_EVALUATION_LIST[indexOfExpertEvaluationList].table[aIndex][cKey] = items[selectedIndex]
 
                 }) {
-                    Text(text = s)
+                    Text(text = s,style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(
+                            Font(
+                                resource = "Ermilov.otf",
+                                style = FontStyle.Normal,
+                                weight = FontWeight.Bold
+                            )
+                        )
+                    ))
                 }
             }
         }
