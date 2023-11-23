@@ -1,7 +1,10 @@
 package screens.presets_screen.alternatives_names
 
+import GLOBAL_COUNT_CRITERIA
+import GLOBAL_COUNT_EXPERT
 import GLOBAL_MATRIX_OF_ALTERNATIVES
 import GLOBAL_MATRIX_OF_CRITERIA
+import GLOBAL_MATRIX_OF_CRITERIA_EVALUATION
 import GLOBAL_MATRIX_OF_EXPERTS
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -16,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import data.*
+import models.addNewCriteriaOrExpert
 import navcontroller.NavController
 import screens.elements.BasicButton
 import screens.elements.DropdownDemo
@@ -142,6 +146,7 @@ fun AlternativesName(
                     BasicButton(
                         "До налаштувань"
                     ){
+                        GLOBAL_MATRIX_OF_CRITERIA_EVALUATION = addNewCriteriaOrExpert(GLOBAL_COUNT_CRITERIA,GLOBAL_COUNT_EXPERT)
                         println(GLOBAL_MATRIX_OF_EXPERTS)
                         navController.navigate(Screen.HomeScreen.name)
                     }

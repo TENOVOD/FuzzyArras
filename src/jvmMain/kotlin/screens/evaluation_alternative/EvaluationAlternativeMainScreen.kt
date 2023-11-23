@@ -134,31 +134,31 @@ fun EvaluationAlternativeScreen(
                 ) {
                     Column(verticalArrangement = Arrangement.SpaceBetween) {
                         Spacer(modifier = Modifier.height(10.dp))
-                        BasicButton("Aggregate score", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
+                        BasicButton("Агреговані оцінки", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
                             getAggregateStore()
                             navController.navigate(Screen.AggregateScoreScreen.name)
                             //navController.navigate(Screen.FuzzyTriangularNumbers.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        BasicButton("Estimates in the form of fuzzy triangular numbers", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
+                        BasicButton("Оцінки у вигляді нечітких трикутних чисел", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
                             getAggregateStore()
                             navController.navigate(Screen.EstimatesInTheFormOfFuzzyTriangularNumbersScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        BasicButton("Estimates in the form of fuzzy numbers", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
+                        BasicButton("Оцінки у вигляді нечітких чисел", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
                             navController.navigate(Screen.EstimatesInTheFormOfFuzzyNumberScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        BasicButton("Optimal criteria values", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),
+                        BasicButton("Оптимальні значення критеріїв", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),
                             ) {
                             navController.navigate(Screen.OptimalCriteriaValuesScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        BasicButton("Normalized matrix", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
+                        BasicButton("Нормована матриця", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
                             navController.navigate(Screen.NormalizedMatrixScreen.name)
                         }
                         Spacer(modifier = Modifier.height(10.dp))
-                        BasicButton("Normalized weighted matrix", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
+                        BasicButton("Нормована зважена матриця", modifier = Modifier.padding(12.dp).padding(1.dp).fillMaxWidth().height(100.dp),) {
 
                             navController.navigate(Screen.NormalizedWeightedMatrixScreen.name)
                         }

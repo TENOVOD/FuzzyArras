@@ -93,6 +93,7 @@ fun changeAllGlobalCriteriaNameById(
     id:Int,
     name:String
 ){
+
     for(i in GLOBAL_MATRIX_OF_CRITERIA.indices){
         if(GLOBAL_MATRIX_OF_CRITERIA[i].id==id){
             GLOBAL_MATRIX_OF_CRITERIA[i].name=name
